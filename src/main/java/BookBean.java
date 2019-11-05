@@ -2,30 +2,21 @@ import model.Book;
 import model.Resource;
 import model.ResourceMenager;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class BookBean implements Serializable {
     private Integer ID;
     private String title;
-    Integer numberOfPage;
-
-
-
-    List<Resource> resourceList;
+    private Integer numberOfPage;
 
     public BookBean() {
-        ResourceMenager resourceMenager = new ResourceMenager();
-        resourceList = resourceMenager.getAll();
-    }
 
-    public String save(){
-        resourceList.add(new Book(ID,title,numberOfPage));
-        return "index";
     }
 
     public Integer getID() {
@@ -52,11 +43,5 @@ public class BookBean implements Serializable {
         this.numberOfPage = numberOfPage;
     }
 
-    public List<Resource> getResourceList() {
-        return resourceList;
-    }
 
-    public void setResourceList(List<Resource> resourceList) {
-        this.resourceList = resourceList;
-    }
 }

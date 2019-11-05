@@ -3,7 +3,7 @@ package model;
 
 
 
-public  class Resource {
+public abstract class Resource {
     private Integer ID;
     private String title;
 
@@ -29,5 +29,5 @@ public  class Resource {
     }
 
 
-    // public abstract getAtrybut();
+     public abstract Integer getAtrybut();
 }

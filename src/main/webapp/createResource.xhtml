@@ -19,7 +19,7 @@
         <h:outputLabel>Number Of Page: </h:outputLabel>
         <h:inputText value="#{bookBean.numberOfPage}" />
 
-        <h:commandButton value="save" action="#{bookBean.save()}"/>
+        <h:commandButton value="save" action="#{controller.save(bookBean)}"/>
     </h:form>
 </h:body>
 </html>

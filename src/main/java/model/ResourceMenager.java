@@ -11,9 +11,9 @@ public class ResourceMenager {
 
     public ResourceMenager() {
         List<Resource> resourceList= new  ArrayList<Resource>();
-        resourceList.add(new Book(1,"Harry poter 1",231));
-        resourceList.add(new Book(2,"Harry poter 2",231));
-        resourceList.add(new Book(3,"Harry poter 3",231));
+        resourceList.add(new Book(1,"Harry poter i kamień filozoficzny",121));
+        resourceList.add(new Book(2,"Harry poter i komnata tajemnic",231));
+        resourceList.add(new Book(3,"Harry poter i wiezien Askabanu",301));
         this.resourceRepository = new ResourceRepository(resourceList);
     }
 

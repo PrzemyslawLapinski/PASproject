@@ -10,4 +10,9 @@ public class Book extends Resource{
         super(ID,tittle);
         this.numberOfPage=numberOfPage;
     }
+
+    @Override
+    public Integer getAtrybut() {
+        return numberOfPage;
+    }
 }

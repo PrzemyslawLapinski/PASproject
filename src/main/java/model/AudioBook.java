@@ -10,4 +10,9 @@ public class AudioBook extends Resource {
         super(ID, tittle);
         this.duration = duration;
     }
+
+    @Override
+    public Integer getAtrybut() {
+        return duration;
+    }
 }

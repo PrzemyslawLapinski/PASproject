@@ -10,22 +10,9 @@ xmlns:p="http://primefaces.org/ui">
 
 </h:head>
 <h:body>
-
-
-<!--    <p:outputLabel value="id:"/>-->
-<!--    <p:inputText  value="#{resourceController.ID}"></p:inputText>-->
-<!--    <p:outputLabel value="title: "/>-->
-<!--    <p:inputText  value="#{resourceController.title}"></p:inputText>-->
-<!--    <p:outputLabel value="numberOfPage: "/>-->
-<!--    <p:inputText  value="#{resourceController.numberOfPage}"></p:inputText>-->
-<!--&lt;!&ndash;    <p:commandButton value="dodaj ksiazke" process="@this" action="#{resourceController.addBook()}"/>&ndash;&gt;-->
-<!--    <h:commandButton id="submit" value="Submit"-->
-<!--                     action="#{resourceController.addBook()}" />-->
-
-
-<!--    <p:commandButton value="dodaj ksiazke 2" onclick="#{resourceController.addBook()}"/>-->
     <h:form>
-    <h:dataTable value="#{bookBean.resourceList}" var="resourcee" >
+
+    <h:dataTable value="#{controller.resourceList}" var="resourcee" >
         <h:column>
             <f:facet name="header">Id</f:facet>
             #{resourcee.ID}
@@ -34,20 +21,13 @@ xmlns:p="http://primefaces.org/ui">
             <f:facet name="header">Tytuł</f:facet>
             #{resourcee.title}
         </h:column>
+        <h:column>
+            <f:facet name="header">Dodatkowe informacje</f:facet>
+            #{resourcee.atrybut}
+        </h:column>
     </h:dataTable>
     <h:commandButton value="create resource" action="createResource"/>
+
     </h:form>
-
-
-<!--    <p:dataTable var="resourcee" value="#{resourceController.resourceList}">-->
-<!--    <p:column headerText="Id">-->
-<!--        <h:outputText value="#{resourcee.ID}" />-->
-<!--    </p:column>-->
-<!--    <p:column headerText="Tytuł">-->
-<!--        <h:outputText value="#{resourcee.title}" />-->
-<!--    </p:column>-->
-<!--    </p:dataTable>-->
-
-
 </h:body>
 </html>

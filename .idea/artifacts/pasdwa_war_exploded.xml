@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="pasdwa:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/pasdwa_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="pasdwa" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.20" />
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.20" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="pasdwa/web/Web" />
+    </root>
+  </artifact>
+</component>
