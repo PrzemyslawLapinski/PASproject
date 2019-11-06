@@ -11,8 +11,5 @@ public class Book extends Resource{
         this.numberOfPage=numberOfPage;
     }
 
-    @Override
-    public Integer getAtrybut() {
-        return numberOfPage;
-    }
+
 }

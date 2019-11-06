@@ -3,7 +3,7 @@ package model;
 
 
 
-public abstract class Resource {
+public abstract class Resource implements Comparable<Resource>{
     private Integer ID;
     private String title;
 
@@ -29,5 +29,10 @@ public abstract class Resource {
     }
 
 
-     public abstract Integer getAtrybut();
+
+
+    @Override
+    public int compareTo(Resource resource) {
+        return this.ID.compareTo(resource.ID);
+    }
 }

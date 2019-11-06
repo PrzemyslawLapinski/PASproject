@@ -11,8 +11,5 @@ public class AudioBook extends Resource {
         this.duration = duration;
     }
 
-    @Override
-    public Integer getAtrybut() {
-        return duration;
-    }
+
 }

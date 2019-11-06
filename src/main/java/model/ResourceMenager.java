@@ -2,22 +2,28 @@ package model;
 
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class ResourceMenager {
     private ResourceRepository resourceRepository;
 
     public ResourceMenager() {
-        List<Resource> resourceList= new  ArrayList<Resource>();
+        Set<Resource> resourceList= new TreeSet<>();
+
+
+        resourceList.add(new Book(5,"Harry poter i wiezien Askabanu",301));
         resourceList.add(new Book(1,"Harry poter i kamień filozoficzny",121));
-        resourceList.add(new Book(2,"Harry poter i komnata tajemnic",231));
-        resourceList.add(new Book(3,"Harry poter i wiezien Askabanu",301));
+        resourceList.add(new Book(2,"Harry poter i kamień filozoficzny 2",221));
+        resourceList.add(new Book(6,"Harry poter i komnata tajemnic",231));
+        resourceList.add(new Book(4,"Harry poter i komnata tajemnic 2 ",331));
+
         this.resourceRepository = new ResourceRepository(resourceList);
     }
 
-    public List<Resource> getAll() {
+    public Set<Resource> getAll() {
         return resourceRepository.getAll();
     }
 
@@ -39,4 +45,21 @@ public class ResourceMenager {
     }
 
 
+    public void addBook(String title, Integer numberOfPage) {
+
+        resourceRepository.create(new Book(findId(),title,numberOfPage));
+    }
+
+    public void addAudioBook(String title, Integer duration) {
+        resourceRepository.create(new AudioBook(findId(),title,duration));
+    }
+    // znajduje pierwsze wolne id
+    private Integer findId() {
+        Set<Integer> ids = resourceRepository.getAll().stream()
+                .map(Resource::getID)
+                .collect(Collectors.toSet());
+        return IntStream.iterate(1, n -> n + 1)
+                .filter(n -> ! ids.contains(n))
+                .findFirst().getAsInt();
+    }
 }

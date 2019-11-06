@@ -5,15 +5,16 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ResourceRepository {
-    List<Resource> resourceList;
+    Set<Resource> resourceList;
 
-    public ResourceRepository(List<Resource> resources) {
+    public ResourceRepository(Set<Resource> resources) {
         resourceList=resources;
     }
 
-    public List<Resource> getAll() {
+    public Set<Resource> getAll() {
         return resourceList;
     }
 

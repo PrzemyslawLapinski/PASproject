@@ -2,19 +2,21 @@ import model.Book;
 import model.Resource;
 import model.ResourceMenager;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Named
-@SessionScoped
+@ApplicationScoped
 public class Controller implements Serializable {
    // @Inject
  // private BookBean bookBean;
 
-    List<Resource> resourceList;
+    Set<Resource> resourceList;
     ResourceMenager resourceMenager;
 
     public Controller() {
@@ -23,15 +25,19 @@ public class Controller implements Serializable {
     }
 
 
-    public List<Resource> getResourceList() {
+    public Set<Resource> getResourceList() {
         return resourceList;
     }
 
-    public void setResourceList(List<Resource> resourceList) {
+    public void setResourceList(Set<Resource> resourceList) {
         this.resourceList = resourceList;
     }
     public String save(BookBean bookBean){
-        resourceList.add(new Book(bookBean.getID(),bookBean.getTitle(),bookBean.getNumberOfPage()));
+        resourceMenager.addBook(bookBean.getTitle(),bookBean.getNumberOfPage());
+        return "index";
+    }
+    public String save(AudioBookBean audioBookBean){
+        resourceMenager.addAudioBook(audioBookBean.getTitle(),audioBookBean.getDuration());
         return "index";
     }
 }
