@@ -7,24 +7,18 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:p="http://primefaces.org/ui">
 <h:head>
-
+    <h:outputStylesheet library="css" name="breadcrumbs"/>
 </h:head>
 <h:body>
+    <ul class="breadcrumb" >
+        <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
+    </ul>
+
     <h:form>
 
-    <h:dataTable value="#{controller.resourceList}" var="resourcee" >
-        <h:column>
-            <f:facet name="header">Id</f:facet>
-            #{resourcee.ID}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Tytuł</f:facet>
-            #{resourcee.title}
-        </h:column>
 
-    </h:dataTable>
-    <h:commandButton value="Create Book" action="createBook"/>
-    <h:commandButton value="Create AudioBook" action="createAudioBook"/>
+    <h:commandButton value="#{msg['resource']}" action="resource.html"/>
+
 
     </h:form>
 </h:body>

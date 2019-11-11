@@ -3,5 +3,24 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-  
+
+    <application>
+        <locale-config>
+            <default-locale>default</default-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>resource</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+
+<!--    <navigation-rule>-->
+<!--        <from-view-id>/index.xhtml</from-view-id>-->
+<!--        <navigation-case>-->
+<!--            <from-outcome>resource</from-outcome>-->
+<!--            <to-view-id>/resource.xhtml</to-view-id>-->
+<!--            <redirect/>-->
+<!--        </navigation-case>-->
+<!--    </navigation-rule>-->
+
 </faces-config>

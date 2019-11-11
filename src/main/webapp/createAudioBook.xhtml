@@ -6,19 +6,27 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-    <title>CreateAudioBook</title>
+    <h:outputStylesheet library="css" name="breadcrumbs"/>
 </h:head>
 <h:body>
+    <ul class="breadcrumb" >
+        <li><h:link value="#{msg['home']}" outcome="index.html?faces-redirect=true" immediate="true"/></li>
+        <li><h:link value="#{msg['resources']}" outcome="resource.html?faces-redirect=true" immediate="true"/></li>
+        <li><h:link value="#{msg['create.audiobook']}" outcome="createAudioBook.html?faces-redirect=true"/></li>
+    </ul>
+
+
     <h:form>
 
 
-        <h:outputLabel>Title: </h:outputLabel>
+        <h:outputLabel>#{msg['title']}</h:outputLabel>
         <h:inputText value="#{audioBookBean.title}" />
 
-        <h:outputLabel>Duration: </h:outputLabel>
+        <h:outputLabel>#{msg['duration']}</h:outputLabel>
         <h:inputText value="#{audioBookBean.duration}" />
 
-        <h:commandButton value="save" action="#{controller.save(audioBookBean)}"/>
+        <h:commandButton value="#{msg['save']}" action="#{controller.save(audioBookBean)}"/>
+        <h:commandButton value="#{msg['cancel']}" action="resource.html?faces-redirect=true" immediate="true"/>
     </h:form>
 </h:body>
 </html>

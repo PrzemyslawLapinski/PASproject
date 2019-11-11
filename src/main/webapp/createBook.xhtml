@@ -6,19 +6,28 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-    <title>CreateBook</title>
+    <h:outputStylesheet library="css" name="breadcrumbs"/>
 </h:head>
 <h:body>
+
+    <ul class="breadcrumb" >
+        <li><h:link value="#{msg['home']}" outcome="index.html?faces-redirect=true" immediate="true"/></li>
+        <li><h:link value="#{msg['resources']}" outcome="resource.html?faces-redirect=true" immediate="true"/></li>
+        <li><h:link value="#{msg['create.book']}" outcome="createBook.html?faces-redirect=true" immediate="true"/></li>
+    </ul>
+
+
     <h:form>
 
 
-        <h:outputLabel>Title: </h:outputLabel>
+        <h:outputLabel>#{msg['title']}</h:outputLabel>
         <h:inputText value="#{bookBean.title}" />
 
-        <h:outputLabel>Number Of Page: </h:outputLabel>
+        <h:outputLabel>#{msg['number.of.page']}</h:outputLabel>
         <h:inputText value="#{bookBean.numberOfPage}" />
 
-        <h:commandButton value="save" action="#{controller.save(bookBean)}"/>
+        <h:commandButton value="#{msg['save']}" action="#{controller.save(bookBean)}"/>
+        <h:commandButton value="#{msg['cancel']}" action="resource.html?faces-redirect=true" immediate="true"/>
     </h:form>
 </h:body>
 </html>
