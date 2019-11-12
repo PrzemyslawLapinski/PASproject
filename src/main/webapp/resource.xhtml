@@ -33,6 +33,14 @@
                 <f:facet name="header">#{msg['title']}</f:facet>
                 #{resourcee.title}
             </h:column>
+            <h:column>
+                <f:facet name="header">Edit</f:facet>
+                <h:commandButton value="#{msg['create.book']}" action="#{controller.updateResource(resourcee.ID)}" styleClass="buttons"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton value="#{msg['create.book']}" action="#{controller.deleteResource(resourcee.ID)}" styleClass="buttons"/>
+            </h:column>
 
         </h:dataTable>
         <h:commandButton value="#{msg['create.book']}" action="createBook?faces-redirect=true" styleClass="buttons"/>

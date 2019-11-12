@@ -1,18 +1,18 @@
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import java.io.Serializable;
-import java.util.List;
 
 @Named
 @Singleton
-public class AudioBookBean implements Serializable {
+public class ResourcePageBean {
+    private ResourceType resourceType;
     private Integer ID;
     private String title;
+    private Integer numberOfPage;
     private Integer duration;
 
-    public AudioBookBean() {
+
+    public ResourcePageBean() {
 
     }
 
@@ -30,6 +30,22 @@ public class AudioBookBean implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Integer getNumberOfPage() {
+        return numberOfPage;
+    }
+
+    public void setNumberOfPage(Integer numberOfPage) {
+        this.numberOfPage = numberOfPage;
+    }
+
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
     }
 
     public Integer getDuration() {

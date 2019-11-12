@@ -45,7 +45,7 @@ public class ResourceMenager {
     }
 
 
-    public void addBook(String title, Integer numberOfPage) {
+    public void addBook( String title, Integer numberOfPage) {
 
         resourceRepository.create(new Book(findId(),title,numberOfPage));
     }

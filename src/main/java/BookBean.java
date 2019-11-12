@@ -5,11 +5,12 @@ import model.ResourceMenager;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.inject.Singleton;
 import java.io.Serializable;
 import java.util.List;
 
 @Named
-@RequestScoped
+@Singleton
 public class BookBean implements Serializable {
     private Integer ID;
     private String title;
