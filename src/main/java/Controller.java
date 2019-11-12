@@ -34,10 +34,10 @@ public class Controller implements Serializable {
     }
     public String save(BookBean bookBean){
         resourceMenager.addBook(bookBean.getTitle(),bookBean.getNumberOfPage());
-        return "index";
+        return "resource?faces-redirect=true";
     }
     public String save(AudioBookBean audioBookBean){
         resourceMenager.addAudioBook(audioBookBean.getTitle(),audioBookBean.getDuration());
-        return "index";
+        return "resource?faces-redirect=true";
     }
 }

@@ -4,10 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <h:outputStylesheet library="css" name="breadcrumbs"/>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
     <ul class="breadcrumb" >
@@ -15,9 +14,17 @@
         <li><h:link value="#{msg['resources']}" outcome="resource.html"/></li>
     </ul>
 
+    <ui:insert name = "menu" >
+        <ui:include src = "menu.xhtml" />
+    </ui:insert>
+
+    <ui:insert name = "footer" >
+        <ui:include src = "footer.xhtml" />
+    </ui:insert>
+
     <h:form>
 
-        <h:dataTable value="#{controller.resourceList}" var="resourcee" >
+        <h:dataTable styleClass="tableTab" value="#{controller.resourceList}" var="resourcee" >
             <h:column>
                 <f:facet name="header">#{msg['id']}</f:facet>
                 #{resourcee.ID}
@@ -28,8 +35,8 @@
             </h:column>
 
         </h:dataTable>
-        <h:commandButton value="#{msg['create.book']}" action="createBook?faces-redirect=true"/>
-        <h:commandButton value="#{msg['create.audiobook']}" action="createAudioBook?faces-redirect=true"/>
+        <h:commandButton value="#{msg['create.book']}" action="createBook?faces-redirect=true" styleClass="buttons"/>
+        <h:commandButton value="#{msg['create.audiobook']}" action="createAudioBook?faces-redirect=true" styleClass="buttons"/>
 
     </h:form>
 </h:body>

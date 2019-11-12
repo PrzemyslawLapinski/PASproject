@@ -4,9 +4,10 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <h:outputStylesheet library="css" name="breadcrumbs"/>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
     <ul class="breadcrumb" >
@@ -14,6 +15,14 @@
         <li><h:link value="#{msg['resources']}" outcome="resource.html?faces-redirect=true" immediate="true"/></li>
         <li><h:link value="#{msg['create.audiobook']}" outcome="createAudioBook.html?faces-redirect=true"/></li>
     </ul>
+
+    <ui:insert name = "menu" >
+        <ui:include src = "menu.xhtml" />
+    </ui:insert>
+
+    <ui:insert name = "footer" >
+        <ui:include src = "footer.xhtml" />
+    </ui:insert>
 
 
     <h:form>
@@ -25,8 +34,8 @@
         <h:outputLabel>#{msg['duration']}</h:outputLabel>
         <h:inputText value="#{audioBookBean.duration}" />
 
-        <h:commandButton value="#{msg['save']}" action="#{controller.save(audioBookBean)}"/>
-        <h:commandButton value="#{msg['cancel']}" action="resource.html?faces-redirect=true" immediate="true"/>
+        <h:commandButton value="#{msg['save']}" action="#{controller.save(audioBookBean)}" styleClass="buttons"/>
+        <h:commandButton value="#{msg['cancel']}" action="resource.html?faces-redirect=true" immediate="true" styleClass="buttons"/>
     </h:form>
 </h:body>
 </html>

@@ -5,21 +5,27 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:p="http://primefaces.org/ui">
+>
 <h:head>
-    <h:outputStylesheet library="css" name="breadcrumbs"/>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
+
     <ul class="breadcrumb" >
         <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
     </ul>
 
+    <ui:insert name = "menu" >
+        <ui:include src = "menu.xhtml" />
+    </ui:insert>
+
+    <ui:insert name = "footer" >
+        <ui:include src = "footer.xhtml" />
+    </ui:insert>
+
     <h:form>
-
-
-    <h:commandButton value="#{msg['resource']}" action="resource.html"/>
-
-
+         <h:commandButton value="#{msg['resource']}" action="resource.html" styleClass="buttons"/>
     </h:form>
+
 </h:body>
 </html>
