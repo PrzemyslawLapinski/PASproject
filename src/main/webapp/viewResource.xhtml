@@ -10,10 +10,11 @@
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
+
     <ul class="breadcrumb" >
         <li><h:link value="#{msg['home']}" outcome="index.html?faces-redirect=true" immediate="true"/></li>
-        <li><h:link value="#{msg['resources']}" outcome="resource.html?faces-redirect=true" immediate="true"/></li>
-        <li><h:link value="#{msg['create.audiobook']}" outcome="createAudioBook.html?faces-redirect=true"/></li>
+        <li><h:link value="#{msg['resources']}" outcome="resourceList.html?faces-redirect=true" immediate="true"/></li>
+        <li><h:link value="#{msg['create.book']}" outcome="viewResource.html?faces-redirect=true" immediate="true"/></li>
     </ul>
 
     <ui:insert name = "menu" >
@@ -29,13 +30,20 @@
 
 
         <h:outputLabel>#{msg['title']}</h:outputLabel>
-        <h:inputText value="#{audioBookBean.title}" />
+        <h:inputText value="#{resourcePageBean.title}" />
 
+        <h:panelGroup rendered="#{resourcePageBean.resourceType=='AudioBook'}">
         <h:outputLabel>#{msg['duration']}</h:outputLabel>
-        <h:inputText value="#{audioBookBean.duration}" />
+        <h:inputText value="#{resourcePageBean.duration}" />
+        </h:panelGroup>
 
-        <h:commandButton value="#{msg['save']}" action="#{controller.save(audioBookBean)}" styleClass="buttons"/>
-        <h:commandButton value="#{msg['cancel']}" action="resource.html?faces-redirect=true" immediate="true" styleClass="buttons"/>
+        <h:panelGroup rendered="#{resourcePageBean.resourceType=='Book'}">
+        <h:outputLabel>#{msg['number.of.page']}</h:outputLabel>
+        <h:inputText value="#{resourcePageBean.numberOfPage}" />
+        </h:panelGroup>
+
+        <h:commandButton value="#{msg['save']}" action="#{resourcePageBean.save()}" styleClass="buttons"/>
+        <h:commandButton value="#{msg['cancel']}" action="#{resourcePageBean.cancel()}" immediate="true" styleClass="buttons"/>
     </h:form>
 </h:body>
 </html>

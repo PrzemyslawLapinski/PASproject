@@ -1,12 +1,13 @@
-package model;
+package resource.model;
 
 
 
+import javax.enterprise.context.ApplicationScoped;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
+@ApplicationScoped
 public class ResourceMenager {
     private ResourceRepository resourceRepository;
 

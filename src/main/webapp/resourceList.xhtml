@@ -11,7 +11,7 @@
 <h:body>
     <ul class="breadcrumb" >
         <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
-        <li><h:link value="#{msg['resources']}" outcome="resource.html"/></li>
+        <li><h:link value="#{msg['resources']}" outcome="resourceList.html"/></li>
     </ul>
 
     <ui:insert name = "menu" >
@@ -23,8 +23,10 @@
     </ui:insert>
 
     <h:form>
+        <h:messages>
 
-        <h:dataTable styleClass="tableTab" value="#{controller.resourceList}" var="resourcee" >
+        </h:messages>
+        <h:dataTable styleClass="tableTab" value="#{resourceViewList.resourceList}" var="resourcee" >
             <h:column>
                 <f:facet name="header">#{msg['id']}</f:facet>
                 #{resourcee.ID}
@@ -35,16 +37,16 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Edit</f:facet>
-                <h:commandButton value="#{msg['create.book']}" action="#{controller.updateResource(resourcee.ID)}" styleClass="buttons"/>
+                <h:commandButton value="#{msg['edit']}" action="#{resourcePageBean.updateResource(resourcee.ID)}" styleClass="buttons"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Delete</f:facet>
-                <h:commandButton value="#{msg['create.book']}" action="#{controller.deleteResource(resourcee.ID)}" styleClass="buttons"/>
+                <h:commandButton value="#{msg['delete']}" action="#{resourceViewList.deleteResource(resourcee.ID)}" styleClass="buttons"/>
             </h:column>
 
         </h:dataTable>
-        <h:commandButton value="#{msg['create.book']}" action="createBook?faces-redirect=true" styleClass="buttons"/>
-        <h:commandButton value="#{msg['create.audiobook']}" action="createAudioBook?faces-redirect=true" styleClass="buttons"/>
+        <h:commandButton value="#{msg['create.book']}" action="#{resourcePageBean.createBook()}" styleClass="buttons"/>
+        <h:commandButton value="#{msg['create.audiobook']}" action="#{resourcePageBean.createAudioBook()}" styleClass="buttons"/>
 
     </h:form>
 </h:body>
