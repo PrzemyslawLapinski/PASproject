@@ -41,10 +41,6 @@ public class ResourceMenager {
         resourceRepository.update(ID,resource);
     }
 
-    public void create(Resource resource) {
-        resourceRepository.create(resource);
-    }
-
     public void deleteByID(Integer ID) {
         resourceRepository.deleteByID(ID);
        // BorrowMenager.deleteResourceReference(ID);
