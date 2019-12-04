@@ -17,8 +17,6 @@ import java.util.List;
 @ConversationScoped
 public class AccounterPageBean implements Serializable {
 
-
-
     String login;
     Card card;
     List<Card> cards;
@@ -74,15 +72,13 @@ public class AccounterPageBean implements Serializable {
     }
 
 
-    public String save(){ //uwaga
+    public String save(){
 
         if(accounterType.equals(AccounterType.ResourceUser)){
             if (!isCreated) {
-                //menager.updateResourceUser(login, new ResourceUser(login));
                 menager.updateResourceUser(login, new ResourceUser(login, isActive, getCARD(login)));
 
             } else {
-                //menager.AddResourceUser(login, card, isActive);
                 menager.AddResourceUser(login, card, isActive);
             }
 
@@ -94,17 +90,11 @@ public class AccounterPageBean implements Serializable {
                 menager.AddResourceManager(login, isActive);
             }
         }
-        //menager.AddResourceUser(login, card, isActive);
 
-
-        //menager.AddResourceManager(login, isActive);
-        //menager.AddResourceUser(login, card, isActive);
         conversation.end();
 
 
 
-       // menager.AddResourceUser(login);
-       // conversation.end();
         return "accounterList?faces-redirect=true";
     }
     public String cancel() {

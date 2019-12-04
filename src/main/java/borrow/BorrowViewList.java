@@ -20,11 +20,8 @@ import java.util.TreeSet;
 public class BorrowViewList implements Serializable {
 
     @Inject
-    ResourceMenager resourceMenager;
-    @Inject
     BorrowMenager borrowMenager;
-    @Inject
-    AccounterMenager accounterMenager;
+
 
     Set<Borrow> borrowSet;
 

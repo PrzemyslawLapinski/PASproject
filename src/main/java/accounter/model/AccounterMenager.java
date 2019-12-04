@@ -40,19 +40,12 @@ public class AccounterMenager {
         return accounterRepository.getAll();
     }
 
-//    public void AddResourceUser( String login) {
-//        accounterRepository.create(new ResourceUser(login) {
-//        });
-//
-//    }
 
     public Accounter getByLogin(String login) {
         return accounterRepository.getByLogin(login);
     }
 
     public void AddResourceUser(String login, Card card, boolean active) {
-
-       //accounterRepository.create(new ResourceUser(login,active, card));
         accounterRepository.create(new ResourceUser(login,active, card));
     }
 

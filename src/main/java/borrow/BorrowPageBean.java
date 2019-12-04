@@ -54,6 +54,11 @@ public class BorrowPageBean implements Serializable {
         return "borrowList?faces-redirect=true";
     }
 
+    public String cancel() {
+        conversation.end();
+        return "borrowList?faces-redirect=true";
+    }
+
     public Date getStartDate() {
         return startDate;
     }

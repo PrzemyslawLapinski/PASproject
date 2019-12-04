@@ -19,9 +19,6 @@ public class BorrowMenager {
     public BorrowMenager() {
         Set<Borrow> borrowList= new TreeSet<>();
 
-        borrowList.add(new Borrow(1, new Date(2019,1,1),
-                new Date(2019,2,2), new Book(1, "3", 12),
-                new ResourceUser("klient1", true , new BronzeCard())));
         this.borrowRepository=new BorrowRepository(borrowList);
     }
     public Set<Borrow> getAll() {
@@ -42,10 +39,10 @@ public class BorrowMenager {
 
     public void deleteByID(Integer ID) {
         borrowRepository.deleteByID(ID);
-        // BorrowMenager.deleteResourceReference(ID);
+
     }
 
-    // znajduje maksymalne
+    // znajduje maksymalne i dodaje +1
     private Integer findId() {
         return borrowRepository.getAll().stream()
                 .map(Borrow::getID)

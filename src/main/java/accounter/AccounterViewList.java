@@ -25,10 +25,7 @@ public class AccounterViewList implements Serializable {
     @PostConstruct
     public void init(){
         accounterList = new HashSet<>(accounterMenager.getAll());
-
-
 }
-
 
     public Set<Accounter> getAccounterList() {
         return accounterList;

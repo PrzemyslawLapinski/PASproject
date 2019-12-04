@@ -12,6 +12,7 @@
     <ul class="breadcrumb" >
         <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
         <li><h:link value="#{msg['borrow']}" outcome="borrowList.html"/></li>
+        <li><h:link value="#{msg['create.borrow']}" href="#" onclick="return false;" /></li>
     </ul>
 
     <ui:insert name = "menu" >
@@ -41,6 +42,7 @@
             </h:column>
 
         </h:dataTable>
+        <h:commandButton value="#{msg['cancel']}" action="#{borrowPageBean.cancel()}" immediate="true" styleClass="buttons"/>
 
 
     </h:form>
