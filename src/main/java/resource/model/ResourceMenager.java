@@ -54,15 +54,27 @@ public class ResourceMenager {
     public void addAudioBook(String title, Integer duration) {
         resourceRepository.create(new AudioBook(findId(),title,duration));
     }
-    // znajduje pierwsze wolne id
+
+    // znajduje maksymalne
     private Integer findId() {
-        Set<Integer> ids = resourceRepository.getAll().stream()
+        return resourceRepository.getAll().stream()
                 .map(Resource::getID)
-                .collect(Collectors.toSet());
-        return IntStream.iterate(1, n -> n + 1)
-                .filter(n -> ! ids.contains(n))
-                .findFirst().getAsInt();
+                .mapToInt(n -> n)
+                .max()
+                .orElse(0) +1;
+
     }
+
+
+//    // znajduje pierwsze wolne id
+//    private Integer findId() {
+//        Set<Integer> ids = resourceRepository.getAll().stream()
+//                .map(Resource::getID)
+//                .collect(Collectors.toSet());
+//        return IntStream.iterate(1, n -> n + 1)
+//                .filter(n -> ! ids.contains(n))
+//                .findFirst().getAsInt();
+//    }
 
 
 }

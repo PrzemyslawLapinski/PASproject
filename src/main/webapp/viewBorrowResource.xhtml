@@ -26,31 +26,22 @@
         <h:messages>
 
         </h:messages>
-        <h:dataTable styleClass="tableTab" value="#{borrowViewList.borrowSet}" var="borrow" >
+        <h:dataTable styleClass="tableTab" value="#{borrowPageBean.resourceList()}" var="resourcee" >
             <h:column>
                 <f:facet name="header">#{msg['id']}</f:facet>
-                #{borrow.ID}
+                #{resourcee.ID}
             </h:column>
             <h:column>
                 <f:facet name="header">#{msg['title']}</f:facet>
-                #{borrow.resource.title}
+                #{resourcee.title}
             </h:column>
             <h:column>
-                <f:facet name="header">#{msg['id']}</f:facet>
-                #{borrow.accounter.login}
+                <f:facet name="header">Select</f:facet>
+                <h:commandButton value="#{msg['select']}" action="#{borrowPageBean.selectResource(resourcee.ID)}" styleClass="buttons"/>
             </h:column>
-            <h:column>
-                <f:facet name="header">#{msg['start.date']}</f:facet>
-                #{borrow.startDate}
-            </h:column>
-            <h:column>
-                <f:facet name="header">#{msg['finish.date']}</f:facet>
-                #{borrow.finishDate}
-            </h:column>
-
 
         </h:dataTable>
-        <h:commandButton value="#{msg['create.borrow']}" action="#{borrowPageBean.createBorrow()}" styleClass="buttons"/>
+
 
     </h:form>
 </h:body>

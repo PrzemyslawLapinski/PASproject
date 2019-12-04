@@ -4,6 +4,8 @@ import accounter.model.Accounter;
 import resource.model.Resource;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BorrowRepository {
 
@@ -26,12 +28,26 @@ public class BorrowRepository {
     }
 
 
+    public Borrow getByID(Integer ID) {
+        return findByID(ID);
+    }
 
+    public void deleteByID(Integer ID) {
+        borrows.remove(findByID(ID));
+    }
 
+    public void update(Integer id, Borrow resource) {
+        Borrow borrow = findByID(id);
+        borrow.setStartDate(resource.getStartDate());
+        borrow.setFinishDate(resource.getFinishDate());
+        borrow.setAccounter(resource.getAccounter());
+        borrow.setResource(resource.getResource());
 
+    }
 
-
-
+    private Borrow findByID(Integer ID) {
+        return borrows.stream().filter(n -> n.getID().equals(ID)).findFirst().orElse(null);
+    }
 
 
 }

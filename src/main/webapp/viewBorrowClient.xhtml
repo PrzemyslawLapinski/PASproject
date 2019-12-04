@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <ul class="breadcrumb" >
+        <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
+        <li><h:link value="#{msg['borrow']}" outcome="borrowList.html"/></li>
+    </ul>
+
+    <ui:insert name = "menu" >
+        <ui:include src = "menu.xhtml" />
+    </ui:insert>
+
+    <ui:insert name = "footer" >
+        <ui:include src = "footer.xhtml" />
+    </ui:insert>
+
+    <h:form>
+        <h:messages>
+
+        </h:messages>
+        <h:dataTable styleClass="tableTab" value="#{borrowPageBean.accounterList()}" var="resourcee" >
+        <h:column>
+            <f:facet name="header">#{msg['id']}</f:facet>
+            #{resourcee.login}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Select</f:facet>
+            <h:commandButton value="#{msg['select']}" action="#{borrowPageBean.selectAccounter(resourcee.login)}" styleClass="buttons"/>
+        </h:column>
+        </h:dataTable>
+
+
+    </h:form>
+</h:body>
+</html>
