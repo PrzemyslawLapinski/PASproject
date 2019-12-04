@@ -1,9 +1,6 @@
 package resource;
 
-import resource.model.AudioBook;
-import resource.model.Book;
-import resource.model.Resource;
-import resource.model.ResourceMenager;
+import resource.model.*;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;

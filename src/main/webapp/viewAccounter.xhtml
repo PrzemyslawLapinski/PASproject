@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+
+    <ul class="breadcrumb" >
+        <li><h:link value="#{msg['home']}" outcome="index.html?faces-redirect=true" immediate="true"/></li>
+        <li><h:link value="#{msg['accounter']}" outcome="accounterList.html?faces-redirect=true" immediate="true"/></li>
+
+    </ul>
+
+    <ui:insert name = "menu" >
+        <ui:include src = "menu.xhtml" />
+    </ui:insert>
+
+    <ui:insert name = "footer" >
+        <ui:include src = "footer.xhtml" />
+    </ui:insert>
+
+
+    <h:form>
+
+
+        <h:outputLabel>#{msg['login']}</h:outputLabel>
+        <h:inputText value="#{accounterPageBean.login}" rendered="#{accounterPageBean.created == 'true'}" />
+        <h:outputText value="#{accounterPageBean.login}" rendered="#{accounterPageBean.created == 'false' }" />
+
+
+        <h:outputLabel>#{msg['active']}</h:outputLabel>
+        <h:selectBooleanCheckbox value="#{accounterPageBean.active}" />
+
+
+
+        <h:outputLabel>#{msg['card']}</h:outputLabel>
+        <h:selectOneMenu value = "#{accounterPageBean.card}" >
+            <f:converter converterId = "accounter.model.CardConverter"  />
+          <!--  <f:selectItem itemValue = "Gold" itemLabel = "" /> -->
+            <!--<f:selectItem itemValue = "Bronze" itemLabel = "Bronze" /> -->
+            <f:selectItems value="#{accounterPageBean.cards}" var="CARD"
+                           itemValue="#{CARD}"
+                           itemLabel="#{CARD.name}" />
+        </h:selectOneMenu>
+
+
+        <h:commandButton value="#{msg['save']}" action="#{accounterPageBean.save()}" styleClass="buttons"/>
+        <h:commandButton value="#{msg['cancel']}" action="#{accounterPageBean.cancel()}" immediate="true" styleClass="buttons"/>
+    </h:form>
+</h:body>
+</html>

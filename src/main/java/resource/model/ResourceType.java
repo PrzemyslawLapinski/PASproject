@@ -1,4 +1,4 @@
-package resource;
+package resource.model;
 
 public enum ResourceType {
     AudioBook,
