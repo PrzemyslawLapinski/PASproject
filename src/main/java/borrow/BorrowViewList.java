@@ -12,6 +12,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -32,6 +33,15 @@ public class BorrowViewList implements Serializable {
 
     public Set<Borrow> getBorrowSet() {
         return borrowSet;
+    }
+
+    public void returnResource(Integer ID){
+        borrowMenager.getByID(ID).setFinishDate(new Date());
+        borrowSet = new TreeSet<>(borrowMenager.getAll());
+    }
+    public void deleteByID(Integer ID) {
+        borrowMenager.deleteByID(ID);
+        borrowSet = new TreeSet<>(borrowMenager.getAll());
     }
 
 

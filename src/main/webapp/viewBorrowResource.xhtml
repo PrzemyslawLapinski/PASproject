@@ -28,7 +28,7 @@
 
         <h:outputLabel>#{msg['start.date']}</h:outputLabel>
         <p:calendar id="startDate" value="#{borrowPageBean.startDate}" mindate="#{borrowPageBean.minDate()}" mode="popup"
-                    pattern="MM/dd/yyyy"/>
+                    pattern="MM/dd/yyyy HH:mm:ss"/>
 
 
         <h:dataTable styleClass="tableTab" value="#{borrowPageBean.resourceList()}" var="resourcee" >
@@ -42,9 +42,8 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Select</f:facet>
-                <h:commandButton value="#{msg['select']}" action="#{borrowPageBean.selectResource(resourcee.ID)}" styleClass="buttons"/>
+                <h:commandButton value="#{msg['select']}" action="#{borrowPageBean.selectResource(resourcee.ID)}" styleClass="buttonsInTable"/>
             </h:column>
-
         </h:dataTable>
         <h:commandButton value="#{msg['cancel']}" action="#{borrowPageBean.cancel()}" immediate="true" styleClass="buttons"/>
 

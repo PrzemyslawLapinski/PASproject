@@ -47,6 +47,16 @@
                 <f:facet name="header">#{msg['finish.date']}</f:facet>
                 #{borrow.finishDate}
             </h:column>
+            <h:column>
+                <f:facet name="header">Return borrow</f:facet>
+                <h:commandButton value="#{msg['return.borrow']}" action="#{borrowViewList.returnResource(borrow.ID)}" styleClass="buttonsInTable"
+                                 disabled="#{not empty borrow.finishDate}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton value="#{msg['delete']}" action="#{borrowViewList.deleteByID(borrow.ID)}" styleClass="buttonsInTable"
+                                 disabled="#{not empty borrow.finishDate}"/>
+            </h:column>
 
 
         </h:dataTable>
