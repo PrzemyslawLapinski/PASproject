@@ -43,8 +43,6 @@
         <h:outputLabel>#{msg['card']}</h:outputLabel>
         <h:selectOneMenu value = "#{accounterPageBean.card}" >
             <f:converter converterId = "accounter.model.CardConverter"  />
-          <!--  <f:selectItem itemValue = "Gold" itemLabel = "" /> -->
-            <!--<f:selectItem itemValue = "Bronze" itemLabel = "Bronze" /> -->
             <f:selectItems value="#{accounterPageBean.cards}" var="CARD"
                            itemValue="#{CARD}"
                            itemLabel="#{CARD.name}" />

@@ -5,6 +5,7 @@ import accounter.model.*;
 import resource.model.AudioBook;
 import resource.model.ResourceType;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
@@ -32,9 +33,14 @@ public class AccounterPageBean implements Serializable {
 
     public AccounterPageBean() {
         cards = new ArrayList<>();
+
         cards.add(new BronzeCard());
         cards.add(new GoldCard());
     }
+
+
+
+
 
     public String createResourceUser() {
         conversation.begin();
@@ -57,7 +63,7 @@ public class AccounterPageBean implements Serializable {
         if (account instanceof ResourceUser) {
             this.setAccounterType(AccounterType.ResourceUser);
             this.setLogin(account.getLogin());
-            this.setCard(((ResourceUser) account).getCard());
+            this.setCard(account.getCard());
             this.setActive(account.isActive());
             return "viewAccounter?faces-redirect=true";
         } else if (account instanceof ResourceManager) {
@@ -65,7 +71,7 @@ public class AccounterPageBean implements Serializable {
             this.setLogin(account.getLogin());
             this.setActive(account.isActive());
 
-            return "viewResource?faces-redirect=true";
+            return "viewAccounter?faces-redirect=true";
         }
         conversation.end();
         return null;
@@ -76,7 +82,7 @@ public class AccounterPageBean implements Serializable {
 
         if(accounterType.equals(AccounterType.ResourceUser)){
             if (!isCreated) {
-                menager.updateResourceUser(login, new ResourceUser(login, isActive, getCARD(login)));
+                menager.update(login, new ResourceUser(login, isActive, getCARD(login)));
 
             } else {
                 menager.AddResourceUser(login, card, isActive);
@@ -85,7 +91,7 @@ public class AccounterPageBean implements Serializable {
 
         } else if (accounterType.equals(AccounterType.ResourceManager)){
             if (!isCreated) {
-                menager.updateResourceManager(login, new ResourceManager(login, isActive));
+                menager.update(login, new ResourceManager(login, isActive));
             } else {
                 menager.AddResourceManager(login, isActive);
             }

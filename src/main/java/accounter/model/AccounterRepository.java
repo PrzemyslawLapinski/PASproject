@@ -32,9 +32,24 @@ public class AccounterRepository {
         return findByLogin(login);
     }
 
+//
+//    public void updateCard(String login, Accounter accounter) {
+//
+//        if(accounter instanceof ResourceUser) {
+//
+//
+//            ((ResourceUser)accounter).setCard(((ResourceUser) accounter).getCard());
+//        }
+//    }
+//
+//
+//    public void updateActivity(String login, Accounter accounter) {
+//        findByLogin(login).setActive(accounter.isActive());
+//
+//    }
 
-    public void updateCard(String login, Accounter accounter) {
-
+    public void update(String login, Accounter accounter) {
+        findByLogin(login).setActive(accounter.isActive());
         if(accounter instanceof ResourceUser) {
 
 
@@ -43,10 +58,6 @@ public class AccounterRepository {
     }
 
 
-    public void updateActivity(String login, Accounter accounter) {
-        findByLogin(login).setActive(accounter.isActive());
-
-    }
 
     public boolean activeAccounter(String login) {
         Accounter accounter = findByLogin(login);

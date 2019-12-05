@@ -55,16 +55,19 @@ public class AccounterMenager {
    }
 
 
-   public void updateResourceUser(String login, Accounter accounter) {
-        accounterRepository.updateActivity(login, accounter);
-        accounterRepository.updateCard(login, accounter);
+//   public void updateResourceUser(String login, Accounter accounter) {
+////        accounterRepository.updateActivity(login, accounter);
+////        accounterRepository.updateCard(login, accounter);
+////   }
+////
+////   public void updateResourceManager(String login, Accounter accounter) {
+//////       accounterRepository.updateActivity(login, accounter);
+////   }
+
+    public void update(String login, Accounter accounter) {
+        accounterRepository.update(login, accounter);
+
    }
-
-   public void updateResourceManager(String login, Accounter accounter) {
-//       accounterRepository.updateActivity(login, accounter);
-   }
-
-
 
 
 }
