@@ -33,8 +33,18 @@ public class BorrowMenager {
         borrowRepository.update(ID,borrow);
     }
 
-    public void addBorrow(Date startDate, Date finishDate, Resource resource, Accounter accounter) {
+    public void addBorrow(Date startDate, Date finishDate, Resource resource, Accounter accounter) throws Exception {
+        if(!(accounter instanceof ResourceUser))
+            throw new Exception("Only Client can borrow books/audiobooks");
+        if(accounter.isActive==false)
+            throw new Exception("Client is no active");
+        if(isResourceAvailable(resource))
+            throw new Exception("Resource with id: "+ resource.getID() + " tittle: " + resource.getTitle() + " actually is allocate");
         borrowRepository.create(new Borrow(findId(),startDate,finishDate,resource,accounter));
+    }
+    private boolean isResourceAvailable(Resource resource){
+        return borrowRepository.getAll().stream().anyMatch(n -> n.getResource().getID().equals(resource.getID()) && n.getFinishDate()==null);
+
     }
 
     public void deleteByID(Integer ID) {

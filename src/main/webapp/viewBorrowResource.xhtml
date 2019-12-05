@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
@@ -24,9 +25,12 @@
     </ui:insert>
 
     <h:form>
-        <h:messages>
 
-        </h:messages>
+        <h:outputLabel>#{msg['start.date']}</h:outputLabel>
+        <p:calendar id="startDate" value="#{borrowPageBean.startDate}" mindate="#{borrowPageBean.minDate()}" mode="popup"
+                    pattern="MM/dd/yyyy"/>
+
+
         <h:dataTable styleClass="tableTab" value="#{borrowPageBean.resourceList()}" var="resourcee" >
             <h:column>
                 <f:facet name="header">#{msg['id']}</f:facet>

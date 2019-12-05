@@ -33,11 +33,13 @@ public class BorrowPageBean implements Serializable {
 
     public String createBorrow(){
         conversation.begin();
+        startDate =new Date();
         return "viewBorrowResource?faces-redirect=true";
     }
     public Set<Resource> resourceList(){
         return resourceMenager.getAll();
     }
+
     public String selectResource(Integer resourceID){
         resource = resourceMenager.getByID(resourceID);
         return "viewBorrowClient?faces-redirect=true";
@@ -45,10 +47,11 @@ public class BorrowPageBean implements Serializable {
     public Set<Accounter> accounterList(){
         return accounterMenager.getAll();
     }
-    public String selectAccounter(String login){
+    public String selectAccounter(String login) throws Exception {
         accounter = accounterMenager.getByLogin(login);
-        startDate = new Date();
+        startDate = startDate!=null ? startDate : new Date();
         finishDate = null;
+
         borrowMenager.addBorrow(startDate,finishDate,resource,accounter);
         conversation.end();
         return "borrowList?faces-redirect=true";
@@ -58,6 +61,10 @@ public class BorrowPageBean implements Serializable {
         conversation.end();
         return "borrowList?faces-redirect=true";
     }
+    public Date minDate(){
+        return startDate;
+    }
+
 
     public Date getStartDate() {
         return startDate;
