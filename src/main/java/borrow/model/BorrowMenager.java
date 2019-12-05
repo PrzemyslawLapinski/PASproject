@@ -45,7 +45,10 @@ public class BorrowMenager {
     }
     private boolean isResourceAvailable(Resource resource){
         return borrowRepository.getAll().stream().anyMatch(n -> n.getResource().getID().equals(resource.getID()) && n.getFinishDate()==null);
-
+    }
+    public void deleteResourceReference(Resource resource){
+         borrowRepository.getAll().stream().filter(n -> n.getResource().getID().equals(resource.getID()))
+                .forEach(n -> n.setResource(null));
     }
 
     public void deleteByID(Integer ID) {

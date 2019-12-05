@@ -3,6 +3,7 @@ package resource.model;
 
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,6 +11,7 @@ import java.util.stream.IntStream;
 @ApplicationScoped
 public class ResourceMenager {
     private ResourceRepository resourceRepository;
+
 
     public ResourceMenager() {
         Set<Resource> resourceList= new TreeSet<>();

@@ -1,5 +1,6 @@
 package resource;
 
+import borrow.model.BorrowMenager;
 import resource.model.Resource;
 import resource.model.ResourceMenager;
 
@@ -17,6 +18,8 @@ public class ResourceViewList implements Serializable {
 
     @Inject
     ResourceMenager resourceMenager;
+    @Inject
+    BorrowMenager borrowMenager;
 
     Set<Resource> resourceList;
 
@@ -37,6 +40,7 @@ public class ResourceViewList implements Serializable {
     public String deleteResource(Integer ID) {
         Resource resourceToRemove = resourceList.stream().filter(e -> e.getID().equals(ID)).findFirst().get();
         resourceList.remove(resourceToRemove);
+        borrowMenager.deleteResourceReference(resourceToRemove);
         try {
             resourceMenager.deleteByID(ID);
         } catch (NullPointerException e) {
