@@ -5,15 +5,20 @@ import accounter.model.BronzeCard;
 import accounter.model.ResourceUser;
 import resource.model.Book;
 import resource.model.Resource;
-import resource.model.ResourceRepository;
+import resource.model.ResourceMenager;
+
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 
 @ApplicationScoped
 public class BorrowMenager {
+
+    @Inject
+    ResourceMenager resourceMenager;
 
     private  BorrowRepository borrowRepository;
 
@@ -39,10 +44,18 @@ public class BorrowMenager {
             throw new Exception("Only Client can borrow books/audiobooks");
         if(accounter.isActive==false)
             throw new Exception("Client is no active");
+        if(!resourceExist(resource)){
+            throw new Exception("Resouce was remove");
+        }
         if(isResourceAvailable(resource))
             throw new Exception("Resource with id: "+ resource.getID() + " tittle: " + resource.getTitle() + " actually is allocate");
         borrowRepository.create(new Borrow(findId(),startDate,finishDate,resource,accounter));
     }
+
+    private boolean resourceExist(Resource resource) {
+        return resourceMenager.getAll().contains(resource);
+    }
+
     private boolean isResourceAvailable(Resource resource){
         return borrowRepository.getAll().stream().anyMatch(n -> n.getResource().getID().equals(resource.getID()) && n.getFinishDate()==null);
     }

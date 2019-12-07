@@ -55,7 +55,7 @@ public class ResourcePageBean implements Serializable{
         return null;
     }
 
-    public String save(){
+    public String save() throws Exception {
         if(resourceType.equals(ResourceType.AudioBook)){
             if (ID != null) {
                 resourceMenager.update(ID, new AudioBook(ID, title, duration));

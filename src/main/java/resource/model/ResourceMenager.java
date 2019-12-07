@@ -34,7 +34,10 @@ public class ResourceMenager {
         return resourceRepository.getByID(ID);
     }
 
-    public void update(Integer ID, Resource resource) {
+    public void update(Integer ID, Resource resource) throws Exception {
+        if(!resourceRepository.getAll().stream().anyMatch(n -> n.getID().equals(ID))){
+            throw new Exception("Resource was remove");
+        }
         resourceRepository.update(ID,resource);
     }
 

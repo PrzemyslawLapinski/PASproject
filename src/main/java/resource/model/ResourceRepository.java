@@ -20,7 +20,7 @@ public class ResourceRepository {
         return findByID(ID);
     }
 
-    public void update(Integer ID, Resource resource) {
+    public  void update(Integer ID, Resource resource) {
         findByID(ID).setTitle(resource.getTitle());
     }
 
@@ -28,7 +28,7 @@ public class ResourceRepository {
         resourceList.add(resource);
     }
 
-    public void deleteByID(Integer ID) {
+    public  void deleteByID(Integer ID) {
         resourceList.remove(findByID(ID));
     }
 

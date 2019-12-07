@@ -37,14 +37,14 @@ public class ResourceViewList implements Serializable {
     }
 
 
-    public String deleteResource(Integer ID) {
+    public String deleteResource(Integer ID) throws Exception {
         Resource resourceToRemove = resourceList.stream().filter(e -> e.getID().equals(ID)).findFirst().get();
         resourceList.remove(resourceToRemove);
         borrowMenager.deleteResourceReference(resourceToRemove);
         try {
             resourceMenager.deleteByID(ID);
         } catch (NullPointerException e) {
-           System.out.println("nie ma");
+           throw new Exception("Nie ma podanego resource");
         }
 
         return "resourceList?faces-redirect=true";

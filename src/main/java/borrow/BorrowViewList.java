@@ -39,9 +39,15 @@ public class BorrowViewList implements Serializable {
         borrowMenager.getByID(ID).setFinishDate(new Date());
         borrowSet = new TreeSet<>(borrowMenager.getAll());
     }
-    public void deleteByID(Integer ID) {
-        borrowMenager.deleteByID(ID);
-        borrowSet = new TreeSet<>(borrowMenager.getAll());
+    public void deleteByID(Integer ID) throws Exception {
+        try {
+            borrowMenager.deleteByID(ID);
+        } catch (NullPointerException e) {
+            throw new Exception("Nie ma podanego wypożyczenia");
+        }finally {
+            borrowSet = new TreeSet<>(borrowMenager.getAll());
+        }
+
     }
 
 
