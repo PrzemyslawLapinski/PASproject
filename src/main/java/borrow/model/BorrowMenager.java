@@ -11,6 +11,7 @@ import resource.model.ResourceMenager;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -80,5 +81,23 @@ public class BorrowMenager {
     }
 
 
+    public Set<Borrow> listAccounterBorrows(String login) {
+        Set<Borrow> arrayList = new HashSet<>();
+        for (Borrow borrow:borrowRepository.borrows) {
+            if (borrow.getAccounter().getLogin().equals(login)) {
+                arrayList.add(borrow);
+            }
+        }
+        return arrayList;
+    }
 
+    public Set<Borrow> listResourceBorrows(Integer ID) {
+        Set<Borrow> list = new HashSet<>();
+        for(Borrow borrow:borrowRepository.borrows) {
+            if (borrow.getResource().getID().equals(ID)) {
+                list.add(borrow);
+            }
+        }
+        return list;
+    }
 }

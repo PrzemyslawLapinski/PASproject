@@ -39,7 +39,7 @@
         <h:selectBooleanCheckbox value="#{accounterPageBean.active}" />
 
 
-
+        <h:panelGroup rendered="#{accounterPageBean.accounterType=='ResourceUser'}">
         <h:outputLabel>#{msg['card']}</h:outputLabel>
         <h:selectOneMenu value = "#{accounterPageBean.card}" >
             <f:converter converterId = "accounter.model.CardConverter"  />
@@ -47,7 +47,7 @@
                            itemValue="#{CARD}"
                            itemLabel="#{CARD.name}" />
         </h:selectOneMenu>
-
+        </h:panelGroup>
 
         <h:commandButton value="#{msg['save']}" action="#{accounterPageBean.save()}" styleClass="buttons"/>
         <h:commandButton value="#{msg['cancel']}" action="#{accounterPageBean.cancel()}" immediate="true" styleClass="buttons"/>

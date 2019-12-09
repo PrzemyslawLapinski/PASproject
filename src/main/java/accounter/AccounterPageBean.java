@@ -2,6 +2,8 @@ package accounter;
 
 
 import accounter.model.*;
+import borrow.model.Borrow;
+import borrow.model.BorrowMenager;
 import resource.model.AudioBook;
 import resource.model.ResourceType;
 
@@ -12,7 +14,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Named
 @ConversationScoped
@@ -24,6 +28,13 @@ public class AccounterPageBean implements Serializable {
     Boolean isActive;
     AccounterType accounterType;
     Boolean isCreated;
+    Set<Borrow> accounterBorrowList;
+    Boolean disabled =false;
+
+
+
+    @Inject
+    private BorrowMenager borrowmenager;
 
     @Inject
     Conversation conversation;
@@ -36,6 +47,9 @@ public class AccounterPageBean implements Serializable {
 
         cards.add(new BronzeCard());
         cards.add(new GoldCard());
+
+
+
     }
 
 
@@ -63,7 +77,7 @@ public class AccounterPageBean implements Serializable {
         if (account instanceof ResourceUser) {
             this.setAccounterType(AccounterType.ResourceUser);
             this.setLogin(account.getLogin());
-            this.setCard(account.getCard());
+            this.setCard(((ResourceUser)account).getCard());
             this.setActive(account.isActive());
             return "viewAccounter?faces-redirect=true";
         } else if (account instanceof ResourceManager) {
@@ -167,5 +181,37 @@ public class AccounterPageBean implements Serializable {
 
     public void setCreated(Boolean created) {
         isCreated = created;
+    }
+
+    public String showDetails(String login) {
+        conversation.begin();
+        Accounter accounter = menager.getByLogin(login);
+        accounterBorrowList = new HashSet<>(borrowmenager.listAccounterBorrows(login));
+        this.setCard(((ResourceUser)accounter).getCard());
+
+        return "accounterDetails?faces-redirect=true";
+    }
+
+    public Set<Borrow> getAccounterBorrowList() {
+        return accounterBorrowList;
+    }
+
+    public void setAccounterBorrowList(Set<Borrow> accounterBorrowList) {
+        this.accounterBorrowList = accounterBorrowList;
+    }
+
+    public void checkifDisabled() {
+        if(accounterType.equals(AccounterType.ResourceUser)){
+            disabled = false;
+        }
+        else disabled=true;
+    }
+
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
     }
 }

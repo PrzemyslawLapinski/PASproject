@@ -1,5 +1,9 @@
 package resource;
 
+import accounter.model.Accounter;
+import accounter.model.ResourceUser;
+import borrow.model.Borrow;
+import borrow.model.BorrowMenager;
 import resource.model.*;
 
 import javax.enterprise.context.Conversation;
@@ -7,6 +11,8 @@ import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Named
 @ConversationScoped
@@ -17,6 +23,12 @@ public class ResourcePageBean implements Serializable{
     private String title;
     private Integer numberOfPage;
     private Integer duration;
+    Set<Borrow> resourcesBorrowList;
+
+
+
+    @Inject
+    private BorrowMenager borrowmenager;
 
     @Inject
     Conversation conversation;
@@ -121,5 +133,17 @@ public class ResourcePageBean implements Serializable{
         this.duration = duration;
     }
 
+    public String showDetails(Integer ID) {
+        conversation.begin();
+        resourcesBorrowList = new HashSet<>(borrowmenager.listResourceBorrows(ID));
+        return "resourceDetails?faces-redirect=true";
+    }
 
+    public Set<Borrow> getResourcesBorrowList() {
+        return resourcesBorrowList;
+    }
+
+    public void setResourcesBorrowList(Set<Borrow> resourcesBorrowList) {
+        this.resourcesBorrowList = resourcesBorrowList;
+    }
 }

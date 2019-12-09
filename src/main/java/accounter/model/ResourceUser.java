@@ -7,7 +7,15 @@ import javax.inject.Named;
 
 public class ResourceUser extends Accounter {
 
+    public Card card;
 
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
 
 
     public ResourceUser(String login) {

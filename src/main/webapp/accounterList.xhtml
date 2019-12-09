@@ -35,14 +35,15 @@
             </h:column>
 
             <h:column>
-                <f:facet name="header">#{msg['card']}</f:facet>
-                #{resourcee.card}
+                <f:facet name="header">Edytuj</f:facet>
+                <h:commandButton value="#{msg['editUser']}" action="#{accounterPageBean.updateAccounter(resourcee.login)}" styleClass="buttonsInTable"/>
             </h:column>
 
 
             <h:column>
-                <f:facet name="header">Edytuj</f:facet>
-                <h:commandButton value="#{msg['editUser']}" action="#{accounterPageBean.updateAccounter(resourcee.login)}" styleClass="buttonsInTable"/>
+                <f:facet name="header">Szczegóły</f:facet>
+                <h:commandButton value="#{msg['details']}" action="#{accounterPageBean.showDetails(resourcee.login)}"  styleClass="buttonsInTable"  />
+
             </h:column>
 
 
