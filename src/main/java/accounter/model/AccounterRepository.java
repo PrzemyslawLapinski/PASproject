@@ -56,7 +56,7 @@ public class AccounterRepository {
             //((ResourceUser)accounter).setCard(((ResourceUser) accounter).getCard());
 
             ResourceUser user = (ResourceUser)findByLogin(login);
-            user.setCard(user.getCard());
+            user.setCard(((ResourceUser)accounter).getCard());
 
 
 

@@ -32,7 +32,7 @@
         <h:outputLabel>#{msg['title']}</h:outputLabel>
             <h:inputText id="tytul" label="Tytul" required="true" value="#{resourcePageBean.title}" requiredMessage="Musisz wpisać wartość" />
             <h:message for="tytul" styleClass="error"/>
-         
+
         <h:panelGroup rendered="#{resourcePageBean.resourceType=='AudioBook'}">
         <h:outputLabel>#{msg['duration']}</h:outputLabel>
         <h:inputText id="czas" label="Czas trwania w sekundach" value="#{resourcePageBean.duration}" >

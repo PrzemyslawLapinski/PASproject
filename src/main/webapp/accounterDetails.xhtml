@@ -8,6 +8,19 @@
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
+    <ul class="breadcrumb" >
+        <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
+        <li><h:link value="#{msg['accounter']}" outcome="accounterList.html"/></li>
+        <li><h:link value="#{msg['display']}" outcome="accounterDetails.html"  /></li>
+    </ul>
+
+    <ui:insert name = "menu" >
+        <ui:include src = "menu.xhtml" />
+    </ui:insert>
+
+    <ui:insert name = "footer" >
+        <ui:include src = "footer.xhtml" />
+    </ui:insert>
 
 <h3>Karta: #{accounterPageBean.card} </h3>
 
@@ -21,8 +34,10 @@
 
 
     </ul>
-
+<h:form>
     <h:commandButton value="#{msg['wyjdz']}" action= "#{accounterPageBean.cancel()}" styleClass="buttons"/>
+</h:form>
+
 
 
 </h:body>

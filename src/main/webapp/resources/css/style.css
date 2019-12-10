@@ -86,6 +86,7 @@ th {
     top: 50%;
     width: 8em;
     margin-top: -2.5em;
+    align-content: end;
 }
 a{
     text-decoration-line: none ;
