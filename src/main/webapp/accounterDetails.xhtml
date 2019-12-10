@@ -9,7 +9,9 @@
 </h:head>
 <h:body>
 
-<h3>Karta: #{accounterPageBean.card}</h3>
+<h3>Karta: #{accounterPageBean.card} </h3>
+
+
     <p>Lista wypożyczeń: </p>
     <ul class="detail">
 
@@ -20,7 +22,7 @@
 
     </ul>
 
-    <h:commandButton value="#{msg['cancel']}" action= "accounterList" styleClass="buttons"/>
+    <h:commandButton value="#{msg['wyjdz']}" action= "#{accounterPageBean.cancel()}" styleClass="buttons"/>
 
 
 </h:body>

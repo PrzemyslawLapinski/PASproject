@@ -53,7 +53,14 @@ public class AccounterRepository {
         if(accounter instanceof ResourceUser) {
 
 
-            ((ResourceUser)accounter).setCard(((ResourceUser) accounter).getCard());
+            //((ResourceUser)accounter).setCard(((ResourceUser) accounter).getCard());
+
+            ResourceUser user = (ResourceUser)findByLogin(login);
+            user.setCard(user.getCard());
+
+
+
+
         }
     }
 

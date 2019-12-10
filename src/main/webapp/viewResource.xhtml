@@ -30,16 +30,25 @@
         <h3>Edytuj parametry:</h3>
         <div class="block" >
         <h:outputLabel>#{msg['title']}</h:outputLabel>
-        <h:inputText value="#{resourcePageBean.title}" />
-
+            <h:inputText id="tytul" label="Tytul" required="true" value="#{resourcePageBean.title}" requiredMessage="Musisz wpisać wartość" />
+            <h:message for="tytul" styleClass="error"/>
+         
         <h:panelGroup rendered="#{resourcePageBean.resourceType=='AudioBook'}">
         <h:outputLabel>#{msg['duration']}</h:outputLabel>
-        <h:inputText value="#{resourcePageBean.duration}" />
+        <h:inputText id="czas" label="Czas trwania w sekundach" value="#{resourcePageBean.duration}" >
+            <f:validateLongRange minimum="1" maximum="3000" />
+        </h:inputText>
+            <br/><br/>
+            <h:message for="czas" styleClass="error" />
         </h:panelGroup>
 
         <h:panelGroup rendered="#{resourcePageBean.resourceType=='Book'}">
         <h:outputLabel>#{msg['number.of.page']}</h:outputLabel>
-        <h:inputText value="#{resourcePageBean.numberOfPage}" />
+        <h:inputText id="strony" label="Liczba Stron" value="#{resourcePageBean.numberOfPage}">
+            <f:validateLongRange minimum="1" maximum="10000" />
+        </h:inputText>
+            <br/><br/>
+            <h:message for="strony" styleClass="error" />
         </h:panelGroup>
         </div>
         <h:commandButton value="#{msg['save']}" action="#{resourcePageBean.save()}" styleClass="buttons"/>

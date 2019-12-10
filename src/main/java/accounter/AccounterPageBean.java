@@ -59,6 +59,7 @@ public class AccounterPageBean implements Serializable {
     public String createResourceUser() {
         conversation.begin();
         isCreated = true;
+        disabled = false;
         accounterType=AccounterType.ResourceUser;
         return "viewAccounter?faces-redirect=true";
     }
@@ -66,6 +67,7 @@ public class AccounterPageBean implements Serializable {
     public String createResourceManager() {
         conversation.begin();
         isCreated = true;
+        disabled = true;
         accounterType= AccounterType.ResourceManager;
         return "viewAccounter?faces-redirect=true";
     }
@@ -73,6 +75,7 @@ public class AccounterPageBean implements Serializable {
     public String createAdmin() {
         conversation.begin();
         isCreated = true;
+        disabled = true;
         accounterType= AccounterType.Admin;
         return "viewAccounter?faces-redirect=true";
     }
@@ -109,7 +112,7 @@ public class AccounterPageBean implements Serializable {
 
         if(accounterType.equals(AccounterType.ResourceUser)){
             if (!isCreated) {
-                menager.update(login, new ResourceUser(login, isActive, getCARD(login)));
+                menager.update(login, new ResourceUser(login, isActive, card));
 
             } else {
                 menager.addResourceUser(login, card, isActive);
@@ -229,9 +232,9 @@ public class AccounterPageBean implements Serializable {
 //            this.setDisabled(true);
 //        }
         if(accounterType.equals(AccounterType.ResourceUser)){
-            disabled = false;
+              disabled = false;
         } else {
-            disabled = true;
+              disabled = true;
         }
     }
 
