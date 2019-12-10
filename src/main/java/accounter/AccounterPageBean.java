@@ -7,6 +7,7 @@ import borrow.model.BorrowMenager;
 import resource.model.AudioBook;
 import resource.model.ResourceType;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -29,7 +30,7 @@ public class AccounterPageBean implements Serializable {
     AccounterType accounterType;
     Boolean isCreated;
     Set<Borrow> accounterBorrowList;
-    Boolean disabled =false;
+    Boolean disabled;
 
 
 
@@ -48,9 +49,8 @@ public class AccounterPageBean implements Serializable {
         cards.add(new BronzeCard());
         cards.add(new GoldCard());
 
-
-
     }
+
 
 
 
@@ -70,6 +70,13 @@ public class AccounterPageBean implements Serializable {
         return "viewAccounter?faces-redirect=true";
     }
 
+    public String createAdmin() {
+        conversation.begin();
+        isCreated = true;
+        accounterType= AccounterType.Admin;
+        return "viewAccounter?faces-redirect=true";
+    }
+
     public String updateAccounter(String login) {
         this.conversation.begin();
         isCreated = false;
@@ -82,6 +89,12 @@ public class AccounterPageBean implements Serializable {
             return "viewAccounter?faces-redirect=true";
         } else if (account instanceof ResourceManager) {
             this.setAccounterType(AccounterType.ResourceManager);
+            this.setLogin(account.getLogin());
+            this.setActive(account.isActive());
+
+            return "viewAccounter?faces-redirect=true";
+        } else if (account instanceof Admin) {
+            this.setAccounterType(AccounterType.Admin);
             this.setLogin(account.getLogin());
             this.setActive(account.isActive());
 
@@ -99,7 +112,7 @@ public class AccounterPageBean implements Serializable {
                 menager.update(login, new ResourceUser(login, isActive, getCARD(login)));
 
             } else {
-                menager.AddResourceUser(login, card, isActive);
+                menager.addResourceUser(login, card, isActive);
             }
 
 
@@ -107,7 +120,13 @@ public class AccounterPageBean implements Serializable {
             if (!isCreated) {
                 menager.update(login, new ResourceManager(login, isActive));
             } else {
-                menager.AddResourceManager(login, isActive);
+                menager.addResourceManager(login, isActive);
+            }
+        } else if(accounterType.equals(AccounterType.Admin)) {
+            if (!isCreated) {
+                menager.update(login, new Admin(login, isActive));
+            } else {
+                menager.addAdmin(login, isActive);
             }
         }
 
@@ -185,6 +204,7 @@ public class AccounterPageBean implements Serializable {
 
     public String showDetails(String login) {
         conversation.begin();
+
         Accounter accounter = menager.getByLogin(login);
         accounterBorrowList = new HashSet<>(borrowmenager.listAccounterBorrows(login));
         this.setCard(((ResourceUser)accounter).getCard());
@@ -201,10 +221,18 @@ public class AccounterPageBean implements Serializable {
     }
 
     public void checkifDisabled() {
+//        Accounter account = menager.getByLogin(login);
+//
+//        if (account instanceof ResourceUser) {
+//            this.setDisabled(false);
+//        } else {
+//            this.setDisabled(true);
+//        }
         if(accounterType.equals(AccounterType.ResourceUser)){
             disabled = false;
+        } else {
+            disabled = true;
         }
-        else disabled=true;
     }
 
     public Boolean getDisabled() {

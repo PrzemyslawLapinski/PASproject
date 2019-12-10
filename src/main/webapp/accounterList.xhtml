@@ -24,7 +24,7 @@
 
     <h:form>
 
-        <h:dataTable styleClass="tableTab" value="#{accounterViewList.accounterList}" var="resourcee" >
+        <h:dataTable styleClass="tableTab" value="#{accounterViewList.accounterList}"  var="resourcee" >
             <h:column>
                 <f:facet name="header">#{msg['id']}</f:facet>
                 #{resourcee.login}
@@ -42,7 +42,9 @@
 
             <h:column>
                 <f:facet name="header">Szczegóły</f:facet>
-                <h:commandButton value="#{msg['details']}" action="#{accounterPageBean.showDetails(resourcee.login)}"  styleClass="buttonsInTable"  />
+
+                <h:commandButton value="#{msg['details']}" action="#{accounterPageBean.showDetails(resourcee.login)}" disabled="#{accounterPageBean.disabled}" styleClass="buttonsInTable"   />
+
 
             </h:column>
 
@@ -51,6 +53,7 @@
 
         <h:commandButton value="#{msg['create.resourceUser']}" action="#{accounterPageBean.createResourceUser()}" styleClass="buttons"/>
         <h:commandButton value="#{msg['create.resourceManager']}" action="#{accounterPageBean.createResourceManager()}" styleClass="buttons"/>
+        <h:commandButton value="#{msg['create.admin']}" action="#{accounterPageBean.createAdmin}" styleClass="buttons"/>
 
     </h:form>
 </h:body>

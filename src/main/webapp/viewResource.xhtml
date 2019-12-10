@@ -27,8 +27,8 @@
 
 
     <h:form>
-
-
+        <h3>Edytuj parametry:</h3>
+        <div class="block" >
         <h:outputLabel>#{msg['title']}</h:outputLabel>
         <h:inputText value="#{resourcePageBean.title}" />
 
@@ -41,7 +41,7 @@
         <h:outputLabel>#{msg['number.of.page']}</h:outputLabel>
         <h:inputText value="#{resourcePageBean.numberOfPage}" />
         </h:panelGroup>
-
+        </div>
         <h:commandButton value="#{msg['save']}" action="#{resourcePageBean.save()}" styleClass="buttons"/>
         <h:commandButton value="#{msg['cancel']}" action="#{resourcePageBean.cancel()}" immediate="true" styleClass="buttons"/>
     </h:form>

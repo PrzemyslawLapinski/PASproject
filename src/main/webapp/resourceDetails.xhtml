@@ -9,11 +9,11 @@
 </h:head>
 <h:body>
 
-
-    <ul>
+    <p>Szczegóły wypożyczenia: </p>
+    <ul class="detail">
 
         <ui:repeat var="temp" value="#{resourcePageBean.resourcesBorrowList}">
-            <li>ID wypożyczenia #{temp.ID} Data rozpoczęcia:  #{temp.startDate} Data zakończenia: #{temp.finishDate}</li>
+            <li>ID wypożyczenia: #{temp.ID}, Data rozpoczęcia:  #{temp.startDate}, Data zakończenia: #{temp.finishDate}</li>
         </ui:repeat>
     </ul>
 

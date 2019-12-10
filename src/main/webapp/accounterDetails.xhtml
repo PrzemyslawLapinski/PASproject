@@ -8,14 +8,19 @@
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
-<h3>Karta: #{accounterPageBean.card}</h3>
 
-    <ul>
+<h3>Karta: #{accounterPageBean.card}</h3>
+    <p>Lista wypożyczeń: </p>
+    <ul class="detail">
 
         <ui:repeat var="temp" value="#{accounterPageBean.accounterBorrowList}">
-            <li>ID wypożyczenia #{temp.ID} Data rozpoczęcia:  #{temp.startDate} Data zakończenia: #{temp.finishDate}</li>
+            <li>ID wypożyczenia: #{temp.ID}, Data rozpoczęcia:  #{temp.startDate}, Data zakończenia: #{temp.finishDate}</li>
         </ui:repeat>
+
+
     </ul>
+
+    <h:commandButton value="#{msg['cancel']}" action= "accounterList" styleClass="buttons"/>
 
 
 </h:body>
