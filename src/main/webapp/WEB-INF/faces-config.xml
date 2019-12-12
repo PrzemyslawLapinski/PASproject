@@ -7,6 +7,7 @@
     <application>
         <locale-config>
             <default-locale>default</default-locale>
+            <supported-locale>pl</supported-locale>
         </locale-config>
         <resource-bundle>
             <base-name>resource</base-name>
