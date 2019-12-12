@@ -3,6 +3,8 @@ package resource.model;
 
 
 
+import accounter.model.ResourceUser;
+
 import java.util.Set;
 
 public class ResourceRepository {
@@ -22,6 +24,10 @@ public class ResourceRepository {
 
     public  void update(Integer ID, Resource resource) {
         findByID(ID).setTitle(resource.getTitle());
+            if(resource instanceof Book)
+                ((Book) findByID(ID)).setNumberOfPage(((Book) resource).getNumberOfPage());
+        if(resource instanceof AudioBook)
+            ((AudioBook) findByID(ID)).setDuration(((AudioBook) resource).getDuration());
     }
 
     public void create(Resource resource) {

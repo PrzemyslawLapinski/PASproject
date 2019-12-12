@@ -77,7 +77,7 @@ public class ResourcePageBean implements Serializable{
 
         } else {
             if (ID != null) {
-                resourceMenager.update(ID, new Book(ID, title, duration));
+                resourceMenager.update(ID, new Book(ID, title, numberOfPage));
             } else {
                 resourceMenager.addBook(title,numberOfPage);
             }
@@ -135,6 +135,8 @@ public class ResourcePageBean implements Serializable{
 
     public String showDetails(Integer ID) {
         conversation.begin();
+        Resource resource = resourceMenager.getByID(ID);
+        if(resource== null) return null;
         resourcesBorrowList = new HashSet<>(borrowmenager.listResourceBorrows(ID));
         return "resourceDetails?faces-redirect=true";
     }

@@ -51,7 +51,7 @@ public class BorrowMenager {
         if(!resourceExist(resource)){
             throw new Exception("Resouce was remove");
         }
-        if(isResourceAvailable(resource))
+        if(resourceMenager.getAll().contains(resource) && isResourceAvailable(resource) )
             throw new Exception("Resource with id: "+ resource.getID() + " tittle: " + resource.getTitle() + " actually is allocate");
         borrowRepository.create(new Borrow(findId(),startDate,finishDate,resource,accounter));
     }
@@ -61,14 +61,16 @@ public class BorrowMenager {
     }
 
     private boolean isResourceAvailable(Resource resource){
-        return borrowRepository.getAll().stream().anyMatch(n -> n.getResource().getID().equals(resource.getID()) && n.getFinishDate()==null);
+        return borrowRepository.getAll().stream().anyMatch(n -> (n.getResource() == null)
+                ? false : n.getResource().equals(resource) && n.getFinishDate()==null);
     }
     private boolean cardLimit(ResourceUser accounter){
-        return borrowRepository.getAll().stream().filter(n -> n.getAccounter().getLogin().equals(accounter.login)
+        return borrowRepository.getAll().stream().filter(n -> n.getAccounter().equals(accounter)
                 && n.getFinishDate()==null).count() >=  accounter.card.getNumberPossibleBorrows();
     }
     public void deleteResourceReference(Resource resource){
-         borrowRepository.getAll().stream().filter(n -> n.getResource().getID().equals(resource.getID()))
+         borrowRepository.getAll().stream().filter(n -> (n.getResource()==null) ?
+                 false : n.getResource().equals(resource))
                 .forEach(n -> n.setResource(null));
     }
 
