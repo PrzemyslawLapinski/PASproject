@@ -30,6 +30,10 @@
                 #{resourcee.login}
             </h:column>
             <h:column>
+                <f:facet name="header">#{msg['accountType']}</f:facet>
+                #{resourcee.getResourceType()}
+            </h:column>
+            <h:column>
                 <f:facet name="header">#{msg['activity']}</f:facet>
                 #{resourcee.active}
             </h:column>
@@ -42,7 +46,8 @@
 
             <h:column>
                 <f:facet name="header">Szczegóły</f:facet>
-                <h:commandButton value="#{msg['details']}" action="#{accounterPageBean.showDetails(resourcee.login)}"  disabled="#{accounterPageBean.disabled}" styleClass="buttonsInTable"   />
+                <h:commandButton value="#{msg['details']}" action="#{accounterPageBean.showDetails(resourcee.login)}"
+                                 disabled="#{resourcee.resourceType != 'ResourceUser'}" styleClass="buttonsInTable"   />
 
             </h:column>
 

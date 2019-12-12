@@ -17,11 +17,11 @@ public class ResourceMenager {
         Set<Resource> resourceList= new TreeSet<>();
 
 
-        resourceList.add(new Book(5,"Harry poter i wiezien Askabanu",301));
-        resourceList.add(new Book(1,"Harry poter i kamień filozoficzny",121));
-        resourceList.add(new Book(2,"Harry poter i kamień filozoficzny 2",221));
-        resourceList.add(new Book(6,"Harry poter i komnata tajemnic",231));
-        resourceList.add(new Book(4,"Harry poter i komnata tajemnic 2 ",331));
+        resourceList.add(new Book(5,"Harry potter i wiezien Askabanu",301));
+        resourceList.add(new Book(1,"Harry potter i kamień filozoficzny",121));
+        resourceList.add(new Book(2,"Potop",221));
+        resourceList.add(new Book(6,"Zbrodnia I Kara",231));
+        resourceList.add(new Book(4,"Achaja",331));
 
         this.resourceRepository = new ResourceRepository(resourceList);
     }

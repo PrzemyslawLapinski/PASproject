@@ -43,6 +43,9 @@ public class BorrowMenager {
     public void addBorrow(Date startDate, Date finishDate, Resource resource, Accounter accounter) throws Exception {
         if(!(accounter instanceof ResourceUser))
             throw new Exception("Only Client can borrow books/audiobooks");
+        if(cardLimit((ResourceUser) accounter)){
+            throw new Exception("Too many books/audiobooks you want borrow");
+        }
         if(accounter.isActive==false)
             throw new Exception("Client is no active");
         if(!resourceExist(resource)){
@@ -59,6 +62,10 @@ public class BorrowMenager {
 
     private boolean isResourceAvailable(Resource resource){
         return borrowRepository.getAll().stream().anyMatch(n -> n.getResource().getID().equals(resource.getID()) && n.getFinishDate()==null);
+    }
+    private boolean cardLimit(ResourceUser accounter){
+        return borrowRepository.getAll().stream().filter(n -> n.getAccounter().getLogin().equals(accounter.login)
+                && n.getFinishDate()==null).count() >=  accounter.card.getNumberPossibleBorrows();
     }
     public void deleteResourceReference(Resource resource){
          borrowRepository.getAll().stream().filter(n -> n.getResource().getID().equals(resource.getID()))

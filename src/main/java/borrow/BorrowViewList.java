@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 @Named
 @ViewScoped
@@ -25,6 +26,8 @@ public class BorrowViewList implements Serializable {
 
 
     Set<Borrow> borrowSet;
+
+    String filtr;
 
     @PostConstruct
     public void init(){
@@ -49,6 +52,21 @@ public class BorrowViewList implements Serializable {
         }
 
     }
+    public void filtrujUser(){
+        borrowSet = (filtr.equals("")) ? new TreeSet<>(borrowMenager.getAll()) :
+                borrowSet.stream().filter(p -> p.getAccounter().getLogin().equals(filtr)).collect(Collectors.toSet());
+    }
+    public void filtrujResource(){
+        borrowSet = (filtr==null) ? new TreeSet<>(borrowMenager.getAll()) :
+                borrowSet.stream().filter(p -> p.getResource().getTitle().equals(filtr)).collect(Collectors.toSet());
+    }
 
 
+    public String getFiltr() {
+        return filtr;
+    }
+
+    public void setFiltr(String filtr) {
+        this.filtr = filtr;
+    }
 }

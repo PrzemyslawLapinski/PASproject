@@ -26,6 +26,11 @@
         <h:messages>
 
         </h:messages>
+        <h:outputLabel>#{msg['filtrowanie']}</h:outputLabel>
+        <h:inputText value="#{borrowViewList.filtr}"/>
+        <h:commandButton value="#{msg['filtruj.user']}" action="#{borrowViewList.filtrujUser()}"/>
+        <h:commandButton value="#{msg['filtruj.resource']}" action="#{borrowViewList.filtrujResource()}"/>
+
         <h:dataTable styleClass="tableTab" value="#{borrowViewList.borrowSet}" var="borrow" >
             <h:column>
                 <f:facet name="header">#{msg['id']}</f:facet>

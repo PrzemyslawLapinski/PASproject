@@ -36,6 +36,16 @@ public abstract class Accounter implements Comparable<Accounter> {
         this.isActive = isActive;
     }
 
+    public String getResourceType(){
+       if( this instanceof ResourceUser)
+           return "ResourceUser";
+        if( this instanceof ResourceManager)
+            return "ResourceManager";
+        if( this instanceof Admin)
+            return "Admin";
+        return "----";
+    }
+
     @Override
     public int compareTo(Accounter accounter) {
         return  this.login.compareTo(accounter.login);
