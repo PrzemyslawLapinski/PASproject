@@ -38,8 +38,9 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>AdminPages</web-resource-name>
-            <url-pattern>/app/accounter/*</url-pattern>
-            <url-pattern>/app/commonFiles/*</url-pattern>
+<!--            <url-pattern>/app/accounterList.xhtml</url-pattern>-->
+            <url-pattern>/app/*</url-pattern>
+
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMIN</role-name>
@@ -51,10 +52,17 @@
 <!--        zasoby które ograniczamy-->
         <web-resource-collection>
 <!--            nazwa dla zbioru zasobów-->
-            <web-resource-name>ResourcePages</web-resource-name>
+            <web-resource-name>ResourceUserPages</web-resource-name>
 <!--            url zasobu-->
-            <url-pattern>/app/borrow/*</url-pattern>
-            <url-pattern>/app/commonFiles/*</url-pattern>
+            <url-pattern>/app/*</url-pattern>
+<!--            <url-pattern>/app/borrowList.xhtml</url-pattern>-->
+<!--            <url-pattern>/app/viewBorrowClient.xhtml</url-pattern>-->
+<!--            <url-pattern>/app/viewBorrowResource.xhtml</url-pattern>-->
+
+
+<!--            <url-pattern>/app/index.xhtml</url-pattern>-->
+<!--            <url-pattern>/app/footer.xhtml</url-pattern>-->
+<!--            <url-pattern>/app/menu.xhtml</url-pattern>-->
 <!--            -->
         </web-resource-collection>
 <!--        role które mogą korzystać z tych zasoboów-->
@@ -71,8 +79,8 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>ResourceMenagerPages</web-resource-name>
-            <url-pattern>/app/resource/*</url-pattern>
-            <url-pattern>/app/commonFiles/*</url-pattern>
+            <url-pattern>/app/*</url-pattern>
+<!--            <url-pattern>/app/resourceList.xhtml</url-pattern>-->
         </web-resource-collection>
         <auth-constraint>
             <role-name>RESOURCEMENAGER</role-name>

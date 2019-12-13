@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://java.sun.com/jsf/html"
 >
 <head>
     <h:outputStylesheet library="css" name="style.css"/>
@@ -13,6 +13,11 @@
 
 <body>
     <ui:composition>
+        <ul >
+            <h:form>
+            <p:commandButton value="#{msg['logout']}" action="#{logoutBacking.submit}"/>
+            </h:form>
+        </ul>
         <ul class="menu">
             <li><h:link value="#{msg['resources']}" outcome="resourceList.html" /></li>
             <li><h:link value="#{msg['borrow']}" outcome="borrowList.html" /></li>
