@@ -10,7 +10,6 @@ import javax.security.enterprise.authentication.mechanism.http.AuthenticationPar
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class LoginBacking {
 
     @NotEmpty
 //    @Email(message = "Please provide a valid e-mail")
-    private String email;
+    private String login;
 
     @Inject
     private SecurityContext securityContext;
@@ -49,7 +48,7 @@ public class LoginBacking {
             case SUCCESS:
                 facesContext.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, "Login succeed", null));
-                externalContext.redirect(externalContext.getRequestContextPath() + "/index.xhtml");
+                externalContext.redirect(externalContext.getRequestContextPath() + "/app/index.xhtml");
                 break;
             case NOT_DONE:
         }
@@ -59,7 +58,7 @@ public class LoginBacking {
         return securityContext.authenticate(
                 (HttpServletRequest) externalContext.getRequest(),
                 (HttpServletResponse) externalContext.getResponse(),
-                AuthenticationParameters.withParams().credential(new UsernamePasswordCredential(email, password))
+                AuthenticationParameters.withParams().credential(new UsernamePasswordCredential(login, password))
         );
     }
 
@@ -71,11 +70,11 @@ public class LoginBacking {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

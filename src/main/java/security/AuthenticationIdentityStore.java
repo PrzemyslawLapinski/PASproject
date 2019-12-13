@@ -1,6 +1,12 @@
 package security;
 
+import accounter.model.Accounter;
+import accounter.model.AccounterMenager;
+import accounter.model.ResourceUser;
+import resource.model.ResourceMenager;
+
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.security.enterprise.credential.Credential;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
@@ -16,22 +22,26 @@ import static javax.security.enterprise.identitystore.CredentialValidationResult
 @ApplicationScoped
 public class AuthenticationIdentityStore implements IdentityStore {
 
-    private static final Map<String, String> unsecureStore = new HashMap<>();
 
-    public AuthenticationIdentityStore() {
-        // Don't do this at home, highly unsecure!
-        unsecureStore.put("student", "student");
-    }
+
+   @Inject
+    AccounterMenager accounterMenager;
 
     @Override
     public CredentialValidationResult validate(Credential credential) {
 
         UsernamePasswordCredential login = (UsernamePasswordCredential) credential;
 
-        if (login.getCaller().equals("student") && login.getPasswordAsString().equals("student")) {
-            return new CredentialValidationResult("admin", new HashSet<>(Arrays.asList("ADMIN")));
-        }  else {
+        Accounter accounter =accounterMenager.getAll().stream().filter(p -> p.getLogin().equals(login.getCaller()) &&
+                                                                            p.isActive)
+                                            .findFirst().orElse(null);
+
+        if(accounter != null) {
+            return new CredentialValidationResult(accounter.login, new HashSet<>(Arrays.asList(accounter.getResourceType())));
+        } else {
             return CredentialValidationResult.NOT_VALIDATED_RESULT;
         }
+
+
     }
 }

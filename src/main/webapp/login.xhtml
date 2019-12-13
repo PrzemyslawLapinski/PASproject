@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <f:view>
     <h:head>
         <h:outputStylesheet>
@@ -11,32 +12,31 @@
         </h:outputStylesheet>
     </h:head>
     <h:body>
-        <h:panelGrid id="grid" columns="1">
+        <p:outputPanel>
             <div class="ui-g">
                 <div class="ui-g-4"/>
                 <div class="ui-g-4">
                     <h3>Login</h3>
 
                     <h:form id="login">
-                        <h:messages id="messages" globalOnly="true"/>
+                        <p:messages id="messages" globalOnly="true"/>
 
                         <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
 
-                            <h:outputLabel for="email" value="E-Mail"/>
-                            <h:inputText id="email" value="#{loginBacking.email}"/>
-                            <h:message for="email"/>
+                            <p:outputLabel for="loginName" value="Login"/>
+                            <p:inputText id="loginName" value="#{loginBacking.login}"/>
+                            <p:message for="loginName"/>
 
-                            <h:outputLabel for="password" value="Password"/>
-                            <h:inputText type="password" id="password" value="#{loginBacking.password}"/>
-                            <h:message for="password"/>
+                            <p:outputLabel for="password" value="Password"/>
+                            <p:inputText type="password" id="password" value="#{loginBacking.password}"/>
+                            <p:message for="password"/>
 
-                            <h:commandButton id="submit" update="@form"
-                                             value="Login" action="#{loginBacking.submit}"/>
+                            <h:commandButton  value="Login" action="#{loginBacking.submit}"/>
                         </h:panelGrid>
                     </h:form>
                 </div>
             </div>
-        </h:panelGrid>
+        </p:outputPanel>
     </h:body>
 </f:view>
 </html>
