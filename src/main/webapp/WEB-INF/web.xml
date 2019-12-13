@@ -15,7 +15,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>app/index.xhtml</welcome-file>
     </welcome-file-list>
     <default-context-path>pas</default-context-path>
     <session-config>
@@ -23,4 +23,43 @@
             30
         </session-timeout>
     </session-config>
+
+<!--    <login-config>-->
+<!--        <auth-method>FORM</auth-method>-->
+<!--        <form-login-config>-->
+<!--            <form-login-page>login.html</form-login-page>-->
+<!--            <form-error-page>error.html</form-error-page>-->
+<!--        </form-login-config>-->
+<!--    </login-config>-->
+    
+    
+<!--     deklaracja rol-->
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+
+<!--    ograniczenie roli-->
+    <security-constraint>
+<!--        zasoby które ograniczamy-->
+        <web-resource-collection>
+<!--            nazwa dla zbioru zasobów-->
+            <web-resource-name>AdminPages</web-resource-name>
+<!--            url zasobu-->
+            <url-pattern>/app/*</url-pattern>
+<!--            -->
+        </web-resource-collection>
+<!--        role które mogą korzystać z tych zasoboów-->
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+<!--    finiuje   wymagania   dla transportu danych w żądaniach zasobu, opcjonalny    -->
+<!--        <user-data-constraint>-->
+<!-- NONE – brak wymagań ,   NTEGRAL  –  wymagana  gwarancja  integralności danych,    CONFIDENTIAL  –  wymagana  gwarancja  poufności danych =  HTTPS  -->
+<!--            <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+<!--        </user-data-constraint>-->
+    </security-constraint>
+
+
+
+
 </web-app>
