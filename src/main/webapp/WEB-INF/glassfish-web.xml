@@ -5,7 +5,17 @@ GlassFish Application Server 3.1 Servlet 3.0//EN"
 <glassfish-web-app>
 <!--    mapowanie nazw/grup na role ( z web.xml)-->
     <security-role-mapping>
+        <role-name>ADMIN</role-name>
+        <group-name>Admin</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
         <role-name>RESOURCEUSER</role-name>
         <group-name>ResourceUser</group-name>
     </security-role-mapping>
+    <security-role-mapping>
+        <role-name>RESOURCEMENAGER</role-name>
+        <group-name>ResourceMenager</group-name>
+    </security-role-mapping>
+
+
 </glassfish-web-app>

@@ -1,3 +1,5 @@
+package security;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -18,12 +20,10 @@ import java.io.IOException;
 @RequestScoped
 public class LoginBacking {
 
-    @NotEmpty
-    @Size(min = 1, message = "Password must have at least 8 characters")
+
     private String password;
 
     @NotEmpty
-//    @Email(message = "Please provide a valid e-mail")
     private String login;
 
     @Inject
@@ -35,22 +35,25 @@ public class LoginBacking {
     @Inject
     private FacesContext facesContext;
 
-    public void submit() throws IOException {
+    public void submit() throws Exception {
 
         switch (continueAuthentication()) {
             case SEND_CONTINUE:
                 facesContext.responseComplete();
                 break;
             case SEND_FAILURE:
+
                 facesContext.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", null));
-                break;
+               // throw new Exception("zly login lub haslo");
+               break;
             case SUCCESS:
                 facesContext.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, "Login succeed", null));
                 externalContext.redirect(externalContext.getRequestContextPath() + "/app/index.xhtml");
                 break;
             case NOT_DONE:
+
         }
     }
 
