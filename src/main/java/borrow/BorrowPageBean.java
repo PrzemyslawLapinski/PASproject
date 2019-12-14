@@ -5,6 +5,7 @@ import accounter.model.AccounterMenager;
 import borrow.model.BorrowMenager;
 import resource.model.Resource;
 import resource.model.ResourceMenager;
+import security.CurrentUser;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -30,6 +31,8 @@ public class BorrowPageBean implements Serializable {
     ResourceMenager resourceMenager;
     @Inject
     AccounterMenager accounterMenager;
+    @Inject
+    CurrentUser currentUser;
 
     public String createBorrow(){
         conversation.begin();
@@ -40,9 +43,16 @@ public class BorrowPageBean implements Serializable {
         return resourceMenager.getAll();
     }
 
-    public String selectResource(Integer resourceID){
+    public String selectResource(Integer resourceID) throws Exception {
         resource = resourceMenager.getByID(resourceID);
-        return "viewBorrowClient?faces-redirect=true";
+        if(currentUser.isResourceUser()){
+            return selectAccounter(currentUser.getCurrentUserLogin());
+        } else {
+            return "viewBorrowClient?faces-redirect=true";
+        }
+
+
+
     }
     public Set<Accounter> accounterList(){
         return accounterMenager.getAll();

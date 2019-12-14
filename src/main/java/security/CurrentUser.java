@@ -25,4 +25,8 @@ public class CurrentUser implements Serializable {
         return isUserInRole("RESOURCEMENAGER");
     }
 
+    public String getCurrentUserLogin(){
+        return FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
+    }
+
 }
