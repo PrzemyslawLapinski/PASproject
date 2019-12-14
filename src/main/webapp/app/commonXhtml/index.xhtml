@@ -12,7 +12,7 @@
 <h:body>
 
     <ul class="breadcrumb" >
-        <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
+        <li><h:link value="#{msg['home']}" outcome="/app/commonXhtml/index.html?faces-redirect=true"/></li>
     </ul>
 
     <ui:insert name = "menu" >
@@ -24,9 +24,9 @@
     </ui:insert>
 
     <h:form>
-         <h:commandButton value="#{msg['resource']}" action="resourceList.html" styleClass="buttons"/>
-        <h:commandButton value="#{msg['borrow']}" action="borrowList.html" styleClass="buttons"/>
-        <h:commandButton value="#{msg['acounters']}" action="accounterList.html" styleClass="buttons"/>
+         <h:commandButton value="#{msg['resource']}" action="/app/resource/resourceList.html?faces-redirect=true" styleClass="buttons"/>
+        <h:commandButton value="#{msg['borrow']}" action="/app/borrow/borrowList.html?faces-redirect=true" styleClass="buttons"/>
+        <h:commandButton value="#{msg['acounters']}" action="/app/accounter/accounterList.html?faces-redirect=true" styleClass="buttons"/>
     </h:form>
 
 </h:body>

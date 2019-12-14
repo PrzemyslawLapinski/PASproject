@@ -9,30 +9,36 @@
 </h:head>
 <h:body>
     <ul class="breadcrumb" >
-        <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
-        <li><h:link value="#{msg['accounter']}" outcome="accounterList.html"/></li>
-        <li><h:link value="#{msg['display']}" outcome="resourceDetails.html"  /></li>
+        <li><h:link value="#{msg['home']}" outcome="/app/commonXhtml/index.html"/></li>
+        <li><h:link value="#{msg['accounter']}" outcome="/app/accounter/accounterList.html"/></li>
+        <li><h:link value="#{msg['display']}" outcome="accounterDetails.html"  /></li>
     </ul>
 
     <ui:insert name = "menu" >
-        <ui:include src = "menu.xhtml" />
+        <ui:include src = "../commonXhtml/menu.xhtml" />
     </ui:insert>
 
     <ui:insert name = "footer" >
-        <ui:include src = "footer.xhtml" />
+        <ui:include src = "../commonXhtml/footer.xhtml" />
     </ui:insert>
 
-    <p>Szczegóły wypożyczenia: </p>
+<h3>Karta: #{accounterPageBean.card} </h3>
+
+
+    <p>Lista wypożyczeń: </p>
     <ul class="detail">
 
-        <ui:repeat var="temp" value="#{resourcePageBean.resourcesBorrowList}">
+        <ui:repeat var="temp" value="#{accounterPageBean.accounterBorrowList}">
             <li>ID wypożyczenia: #{temp.ID}, Data rozpoczęcia:  #{temp.startDate}, Data zakończenia: #{temp.finishDate}</li>
         </ui:repeat>
-    </ul>
 
-    <h:form>
-        <h:commandButton value="#{msg['wyjdz']}" action= "#{resourcePageBean.cancel()}" styleClass="buttons"/>
-    </h:form>
+
+    </ul>
+<h:form>
+    <h:commandButton value="#{msg['wyjdz']}" action= "#{accounterPageBean.cancel()}" styleClass="buttons"/>
+</h:form>
+
+
 
 </h:body>
 </html>

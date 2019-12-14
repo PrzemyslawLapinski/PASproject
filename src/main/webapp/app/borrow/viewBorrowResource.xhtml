@@ -11,17 +11,17 @@
 </h:head>
 <h:body>
     <ul class="breadcrumb" >
-        <li><h:link value="#{msg['home']}" outcome="index.html"/></li>
-        <li><h:link value="#{msg['borrow']}" outcome="borrowList.html"/></li>
+        <li><h:link value="#{msg['home']}" outcome="/app/commonXhtml/index.html"/></li>
+        <li><h:link value="#{msg['borrow']}" outcome="/app/borrow/borrowList.html"/></li>
         <li><h:link value="#{msg['create.borrow']}" href="#" onclick="return false;" /></li>
     </ul>
 
     <ui:insert name = "menu" >
-        <ui:include src = "menu.xhtml" />
+        <ui:include src = "../commonXhtml/menu.xhtml" />
     </ui:insert>
 
     <ui:insert name = "footer" >
-        <ui:include src = "footer.xhtml" />
+        <ui:include src = "../commonXhtml/footer.xhtml" />
     </ui:insert>
 
     <h:form>

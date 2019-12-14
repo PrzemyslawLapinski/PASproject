@@ -19,9 +19,12 @@
             </h:form>
         </ul>
         <ul class="menu">
-            <li><h:link value="#{msg['resources']}" outcome="resourceList.html" /></li>
-            <li><h:link value="#{msg['borrow']}" outcome="borrowList.html" /></li>
-            <li><h:link value="#{msg['accounter']}" outcome="accounterList.html" /></li>
+            <li><h:link value="#{msg['resources']}" outcome="/app/resource/resourceList.html?faces-redirect=true"
+                        rendered="#{currentUser.resourceMenager}"/></li>
+            <li><h:link value="#{msg['borrow']}" outcome="/app/borrow/borrowList.html?faces-redirect=true"
+                        rendered="#{currentUser.resourceUser}"/></li>
+            <li><h:link value="#{msg['acounters']}" outcome="/app/accounter/accounterList.html?faces-redirect=true"
+                        rendered="#{currentUser.admin}"/></li>
 
         </ul>
     </ui:composition>

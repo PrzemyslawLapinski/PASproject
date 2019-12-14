@@ -40,7 +40,7 @@ public abstract class Accounter implements Comparable<Accounter> {
        if( this instanceof ResourceUser)
            return "ResourceUser";
         if( this instanceof ResourceManager)
-            return "ResourceManager";
+            return "ResourceMenager";
         if( this instanceof Admin)
             return "Admin";
         return "----";
