@@ -24,9 +24,11 @@
     </ui:insert>
 
     <h:form>
-         <h:commandButton value="#{msg['resource']}" action="/app/resource/resourceList.html?faces-redirect=true" styleClass="buttons"/>
-        <h:commandButton value="#{msg['borrow']}" action="/app/borrow/borrowList.html?faces-redirect=true" styleClass="buttons"/>
-        <h:commandButton value="#{msg['acounters']}" action="/app/accounter/accounterList.html?faces-redirect=true" styleClass="buttons"/>
+        <h:outputLabel rendered="#{!currentUser.blocked}">Login: #{currentUser.currentUserLogin} Poziom dostepu: #{currentUser.type}  </h:outputLabel>
+        <h:commandButton value="Twoje konto jest zablokowane!!!"  styleClass="buttons" rendered="#{currentUser.blocked}"/>
+         <h:commandButton value="#{msg['resource']}" action="/app/resource/resourceList.html?faces-redirect=true" styleClass="buttons" rendered="#{currentUser.resourceMenager}"/>
+        <h:commandButton value="#{msg['borrow']}" action="/app/borrow/borrowList.html?faces-redirect=true" styleClass="buttons" rendered="#{currentUser.resourceUser}"/>
+        <h:commandButton value="#{msg['acounters']}" action="/app/accounter/accounterList.html?faces-redirect=true" styleClass="buttons"  rendered="#{currentUser.admin}"/>
     </h:form>
 
 </h:body>

@@ -32,5 +32,8 @@ public class ResourceUser extends Accounter {
         this.card = card;
     }
 
-
+    public ResourceUser(String login, String password, boolean isActive, Card card) {
+        super(login, password, isActive);
+        this.card = card;
+    }
 }

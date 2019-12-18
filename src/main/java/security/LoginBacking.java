@@ -1,6 +1,10 @@
 package security;
 
+import accounter.model.Accounter;
+import accounter.model.AccounterMenager;
+
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -15,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.IOException;
+import java.io.Serializable;
 
 @Named
 @RequestScoped
@@ -23,8 +28,11 @@ public class LoginBacking {
 
     private String password;
 
-    @NotEmpty
+
     private String login;
+
+@Inject
+private AccounterMenager menager;
 
     @Inject
     private SecurityContext securityContext;
@@ -44,12 +52,15 @@ public class LoginBacking {
             case SEND_FAILURE:
 
                 facesContext.addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", null));
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login or password failed", null));
                // throw new Exception("zly login lub haslo");
                break;
             case SUCCESS:
+
+
                 facesContext.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, "Login succeed", null));
+
                 externalContext.redirect(externalContext.getRequestContextPath() + "/app/commonXhtml/index.xhtml");
                 break;
             case NOT_DONE:
@@ -80,4 +91,6 @@ public class LoginBacking {
     public void setLogin(String login) {
         this.login = login;
     }
+
+
 }

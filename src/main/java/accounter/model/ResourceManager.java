@@ -9,4 +9,7 @@ public class ResourceManager extends Accounter {
         super(login, isActive);
     }
 
+    public ResourceManager(String login, String password, boolean isActive) {
+        super(login, password, isActive);
+    }
 }

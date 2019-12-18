@@ -17,11 +17,11 @@ public class AccounterMenager {
         Set<Accounter> resourceList = new TreeSet<>();
 
 
-        resourceList.add(new ResourceUser("klient", true , new BronzeCard()) {
+        resourceList.add(new ResourceUser("klient", "klient", true , new BronzeCard()) {
         });
-        resourceList.add(new Admin("admin", true) {
+        resourceList.add(new Admin("admin", "admin", true   ) {
         });
-        resourceList.add(new ResourceManager("menager", true) {
+        resourceList.add(new ResourceManager("menager", "123",true) {
         });
 
 
@@ -42,6 +42,10 @@ public class AccounterMenager {
 
     public void addResourceUser(String login, Card card, boolean active) {
         accounterRepository.create(new ResourceUser(login,active, card));
+    }
+
+    public void addResourceUser(String login, String password, Card card, boolean active) {
+        accounterRepository.create(new ResourceUser(login, password, active, card));
     }
 
 

@@ -11,4 +11,7 @@ public class Admin extends Accounter {
         super(login, isActive);
     }
 
+    public Admin(String login, String password, boolean isActive) {
+        super(login, password, isActive);
+    }
 }

@@ -32,12 +32,17 @@ public class AuthenticationIdentityStore implements IdentityStore {
 
         UsernamePasswordCredential login = (UsernamePasswordCredential) credential;
 
-        Accounter accounter =accounterMenager.getAll().stream().filter(p -> p.getLogin().equals(login.getCaller()) &&
-                                                                            p.isActive)
+        Accounter accounter =accounterMenager.getAll().stream().filter(p -> p.getLogin().equals(login.getCaller())  &&
+                                                                              p.getPassword().equals(login.getPasswordAsString()))
                                             .findFirst().orElse(null);
 
         if(accounter != null) {
-            return new CredentialValidationResult(accounter.login, new HashSet<>(Arrays.asList(accounter.getResourceType())));
+            if(accounter.isActive()) {
+                return new CredentialValidationResult(accounter.login, new HashSet<>(Arrays.asList(accounter.getResourceType())));
+            } else {
+                return new CredentialValidationResult(accounter.login, new HashSet<>(Arrays.asList("Blocked")));
+            }
+
         } else {
             return CredentialValidationResult.NOT_VALIDATED_RESULT;
         }

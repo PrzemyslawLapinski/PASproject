@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <style type="text/css">
+    </style>
+</h:head>
+<h:form id="registration" prependId="false">
+
+
+
+    <p>
+        <h:messages id="messages" />
+    </p>
+
+    <table>
+
+
+
+        <tr>
+            <td><h:outputLabel for="txtNameId" value="Enter your Name*" />
+                <h:inputText id="txtNameId" required="true"
+                             value="#{registration.name}" label="Name">
+                </h:inputText></td>
+        </tr>
+
+
+        <tr>
+            <td><h:outputLabel for="txtPasswordId" value="Enter Password*" />
+                <h:inputSecret id="txtPasswordId" required="true"
+                               value="#{registration.password}" label="Password">
+                </h:inputSecret></td>
+        </tr>
+
+
+        <tr>
+            <td><h:outputLabel for="txtConfirmPasswordId"
+                               value="Enter Confirm Password*" /> <h:inputSecret
+                    id="txtConfirmPasswordId" required="true"
+                    value="#{registration.confirmPassword}" label="Confirm Password">
+            </h:inputSecret></td>
+        </tr>
+
+     <!--   <tr>
+            <td>
+
+            <h:outputLabel  value="Select your card*" />
+        <h:selectOneMenu  value = "#{registration.card}" >
+            <f:converter converterId = "accounter.model.CardConverter"  />
+            <f:selectItems value="#{registration.cards}" var="CARD"
+                           itemValue="#{CARD}"
+                           itemLabel="#{CARD.name}" />
+        </h:selectOneMenu>
+            </td>
+        </tr> -->
+        <tr>
+            <td><h:outputLabel for="txtCaptchaId"
+                               value="Enter text shown in the Image*" /> <h:inputText
+                    id="txtCaptchaId" required="true"
+                    value="#{registration.captchaText}" label="Enter Captcha"
+                    placeholder="Enter Security Code" autocomplete="false">
+                <f:validator validatorId="captchaValidator" />
+            </h:inputText></td>
+            <td align="center"><h:graphicImage id="imgCaptchaId"
+                                               value="captcha.jpg" /> <h:commandLink
+                    onclick="document.getElementById('imgCaptchaId').src = 'captcha.jpg?' + Math.random();  return false">
+                <h:graphicImage
+                                value="#{facesContext.externalContext.requestContextPath}#{registration.imageURL}" />
+
+            </h:commandLink></td>
+        </tr>
+        <tr>
+            <td align="center"><h:commandButton value="Submit"
+                                                action="#{registration.createNewUser}" ajax="false">
+            </h:commandButton></td>
+        </tr>
+    </table>
+
+</h:form>
+
+</html>

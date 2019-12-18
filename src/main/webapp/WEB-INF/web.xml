@@ -34,17 +34,26 @@
     <security-role>
         <role-name>RESOURCEMENAGER</role-name>
     </security-role>
+    <security-role>
+        <role-name>BLOCKED</role-name>
+    </security-role>
 
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>CommonPages</web-resource-name>
             <url-pattern>/app/commonXhtml/*</url-pattern>
+
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMIN</role-name>
             <role-name>RESOURCEUSER</role-name>
             <role-name>RESOURCEMENAGER</role-name>
+            <role-name>BLOCKED</role-name>
         </auth-constraint>
+        <user-data-constraint>
+
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
 
 
@@ -56,7 +65,13 @@
         <auth-constraint>
             <role-name>ADMIN</role-name>
         </auth-constraint>
+        <user-data-constraint>
+
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
+
+
 
 
 
@@ -68,6 +83,10 @@
         <auth-constraint>
             <role-name>RESOURCEUSER</role-name>
         </auth-constraint>
+        <user-data-constraint>
+
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
 
 
@@ -94,14 +113,21 @@
             <role-name>RESOURCEMENAGER</role-name>
         </auth-constraint>
         <!--    finiuje   wymagania   dla transportu danych w żądaniach zasobu, opcjonalny    -->
-        <!--        <user-data-constraint>-->
-        <!-- NONE – brak wymagań ,   NTEGRAL  –  wymagana  gwarancja  integralności danych,    CONFIDENTIAL  –  wymagana  gwarancja  poufności danych =  HTTPS  -->
-        <!--            <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
-        <!--        </user-data-constraint>-->
+                <user-data-constraint>
+
+                    <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+                </user-data-constraint>
     </security-constraint>
 
 
-
+    <servlet>
+        <servlet-name>CaptchaServlet</servlet-name>
+        <servlet-class>security.CaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CaptchaServlet</servlet-name>
+        <url-pattern>/captcha.jpg</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
